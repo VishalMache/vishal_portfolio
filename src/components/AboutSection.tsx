@@ -33,7 +33,7 @@ export default function AboutSection() {
           <div className="section-line"></div>
         </div>
 
-        {/* 3-Column Grid */}
+        {/* 2-Column Grid */}
         <div className="about__grid">
           
           {/* Column 1: Journey & Education */}
@@ -58,54 +58,12 @@ export default function AboutSection() {
             </div>
           </div>
 
-          {/* Column 2: Skills */}
+          {/* Column 2: What I Do */}
           <div className="about__col reveal" style={{ transitionDelay: "0.2s" }}>
-            <h3 className="about__col-title">Tech Stack</h3>
-            
-            <div className="skill-group">
-              <h4 className="skill-title">Languages</h4>
-              <div className="skill-badges">
-                {skills.languages.map((skill) => (
-                  <span key={skill} className="skill-badge">{skill}</span>
-                ))}
-              </div>
-            </div>
-
-            <div className="skill-group">
-              <h4 className="skill-title">Frameworks</h4>
-              <div className="skill-badges">
-                {skills.frameworks.map((skill) => (
-                  <span key={skill} className="skill-badge">{skill}</span>
-                ))}
-              </div>
-            </div>
-
-            <div className="skill-group">
-              <h4 className="skill-title">Backend & Data</h4>
-              <div className="skill-badges">
-                {skills.backend.map((skill) => (
-                  <span key={skill} className="skill-badge">{skill}</span>
-                ))}
-              </div>
-            </div>
-
-            <div className="skill-group">
-              <h4 className="skill-title">Tools</h4>
-              <div className="skill-badges">
-                {skills.tools.map((skill) => (
-                  <span key={skill} className="skill-badge">{skill}</span>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Column 3: Services */}
-          <div className="about__col reveal" style={{ transitionDelay: "0.3s" }}>
             <h3 className="about__col-title">What I Do</h3>
             <div className="services-list">
               {services.map((service, index) => (
                 <div key={index} className="service-item">
-                  <span className="service-icon">{service.icon}</span>
                   <div className="service-content">
                     <h4 className="service-title">{service.title}</h4>
                     <p className="service-desc">{service.description}</p>
@@ -114,13 +72,6 @@ export default function AboutSection() {
               ))}
             </div>
           </div>
-        </div>
-
-        {/* Philosophy Banner */}
-        <div className="about__banner reveal" style={{ transitionDelay: "0.4s" }}>
-          <p className="about__philosophy">
-            "Design is not just what it looks like — it's how it works, how it feels, and how it connects."
-          </p>
         </div>
       </div>
     </section>

@@ -5,6 +5,7 @@ import Sidebar from "@/components/Sidebar";
 import MenuOverlay from "@/components/MenuOverlay";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
+import TechStackSection from "@/components/TechStackSection";
 import ThemeToggle from "@/components/ThemeToggle";
 import Preloader from "@/components/Preloader";
 import { personalInfo } from "@/lib/data";
@@ -45,6 +46,7 @@ export default function Home() {
       <main className="main-content">
         <HeroSection />
         <AboutSection />
+        <TechStackSection />
       </main>
     </div>
   );

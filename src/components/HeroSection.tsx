@@ -2,6 +2,8 @@
 
 import { personalInfo } from "@/lib/data";
 import Image from "next/image";
+import { BorderBeam } from "@/components/ui/border-beam";
+import { ShiningText } from "@/components/ui/shining-text";
 
 export default function HeroSection() {
   return (
@@ -10,8 +12,7 @@ export default function HeroSection() {
       <div className="hero__content">
         {/* Availability badge */}
         <div className="hero__availability">
-          <span className="hero__availability-dot" />
-          {personalInfo.availability}
+          <ShiningText text={personalInfo.availability} />
         </div>
 
         {/* Greeting */}
@@ -80,14 +81,17 @@ export default function HeroSection() {
           </div>
         </div>
 
-        <Image
-          src="/vishal-hero-new.png"
-          alt="Vishal Mache — Developer & Designer"
-          fill
-          priority
-          sizes="(max-width: 768px) 100vw, 50vw"
-          className="hero__image"
-        />
+        <div className="hero__image-inner">
+          <Image
+            src="/vishal-hero-enhanced.png"
+            alt="Vishal Mache — Developer & Designer"
+            fill
+            priority
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="hero__image"
+          />
+          <BorderBeam size={350} duration={8} borderWidth={2} />
+        </div>
 
         {/* Social links floating on image */}
         <div className="hero__socials">
