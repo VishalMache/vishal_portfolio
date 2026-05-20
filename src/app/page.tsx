@@ -1,53 +1,43 @@
 "use client";
 
-import { useState } from "react";
-import Sidebar from "@/components/Sidebar";
-import MenuOverlay from "@/components/MenuOverlay";
+import FloatingNavbar from "@/components/FloatingNavbar";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import TechStackSection from "@/components/TechStackSection";
-import ThemeToggle from "@/components/ThemeToggle";
+import ProjectsSection from "@/components/ProjectsSection";
 import Preloader from "@/components/Preloader";
-import { personalInfo } from "@/lib/data";
+import { CustomCursor } from "@/components/ui/CustomCursor";
 
 export default function Home() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   return (
     <div className="app-layout">
+      <CustomCursor />
       <Preloader />
-      {/* Persistent sidebar (desktop) */}
-      <Sidebar onMenuToggle={() => setIsMenuOpen(true)} />
 
-      {/* Mobile header */}
-      <header className="mobile-header">
-        <div className="mobile-header__logo">VM</div>
-        <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-          <ThemeToggle />
-          <button
-            className="mobile-header__menu"
-            onClick={() => setIsMenuOpen(true)}
-            aria-label="Open menu"
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-        </div>
-      </header>
+      {/* Floating minimalist branding logo */}
+      <a
+        href="#home"
+        onClick={(e) => {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }}
+        className="floating-logo"
+        aria-label="Home"
+      >
+        VM
+      </a>
 
-      {/* Full-screen menu overlay */}
-      <MenuOverlay
-        isOpen={isMenuOpen}
-        onClose={() => setIsMenuOpen(false)}
-      />
+      {/* Premium floating capsule navbar */}
+      <FloatingNavbar />
 
       {/* Main content */}
       <main className="main-content">
         <HeroSection />
         <AboutSection />
         <TechStackSection />
+        <ProjectsSection />
       </main>
     </div>
   );
 }
+
