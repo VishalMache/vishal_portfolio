@@ -625,10 +625,55 @@ button {
 
 .hero__image-inner {
   position: absolute;
-  inset: 0;
-  border-radius: 0;
+  inset: 16px 0 16px 36px;
+  border-radius: 16px;
   overflow: hidden;
   box-shadow: none;
+  background-color: var(--color-bg);
+}
+
+.hero__image-glow {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 90%;
+  background: radial-gradient(
+    circle,
+    rgba(99, 102, 241, 0.45) 0%,
+    rgba(168, 85, 247, 0.3) 40%,
+    rgba(59, 130, 246, 0.15) 75%,
+    transparent 100%
+  );
+  filter: blur(90px);
+  z-index: 1;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  animation: glowPulse 10s ease-in-out infinite alternate;
+}
+
+[data-theme='light'] .hero__image-glow {
+  background: radial-gradient(
+    circle,
+    rgba(99, 102, 241, 0.25) 0%,
+    rgba(168, 85, 247, 0.15) 45%,
+    transparent 75%
+  );
+  filter: blur(70px);
+  mix-blend-mode: multiply;
+  opacity: 0.75;
+}
+
+@keyframes glowPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.85) rotate(0deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.05) rotate(15deg);
+    opacity: 1;
+  }
 }
 
 [data-theme='dark'] .hero__image-inner {
@@ -640,7 +685,71 @@ button {
   height: 100%;
   object-fit: cover;
   object-position: center top;
+  position: absolute !important;
+  z-index: 2;
 }
+
+/* Floating Social Links inside Hero Image */
+.hero__socials-floating {
+  position: absolute;
+  right: var(--space-md);
+  bottom: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  z-index: 10;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: socialFloatReveal 0.8s var(--ease-out-expo) 1.2s forwards;
+}
+
+@keyframes socialFloatReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero__social-float-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(15, 15, 15, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+  transition: all var(--duration-normal) var(--ease-out-expo);
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+.hero__social-float-btn:hover {
+  background: var(--color-accent);
+  color: #ffffff;
+  border-color: var(--color-accent);
+  transform: translateY(-4px) scale(1.08);
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.45);
+}
+
+/* Light Theme overrides for the buttons */
+[data-theme='light'] .hero__social-float-btn {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: var(--color-text);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme='light'] .hero__social-float-btn:hover {
+  background: var(--color-accent);
+  color: #ffffff;
+  border-color: var(--color-accent);
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+}
+
 
 /* Location Badge */
 .location-badge {
@@ -1139,7 +1248,9 @@ button {
   }
 
   .hero__image-inner {
-    border-radius: 0;
+    inset: 12px;
+    border-radius: 12px;
+    transform: translateX(0);
   }
 
   .location-badge {
