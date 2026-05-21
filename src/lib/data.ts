@@ -33,6 +33,29 @@ export const education = {
   cgpa: "7.5 / 10",
 };
 
+export const passions = [
+  {
+    icon: "🎨",
+    title: "Editorial Design",
+    description: "Obsessing over white space, refined typography, and layout balance."
+  },
+  {
+    icon: "☕",
+    title: "Specialty Coffee",
+    description: "Brewing the perfect light-roast pour-over to kickstart the day."
+  },
+  {
+    icon: "🧠",
+    title: "AI Agent Tech",
+    description: "Fascinated by multi-agent pipelines and autonomous cognitive models."
+  },
+  {
+    icon: "🕹️",
+    title: "Creative Coding",
+    description: "Experimenting with interactive physics, custom shaders, and canvas math."
+  }
+];
+
 export const services = [
   {
     icon: "📱",

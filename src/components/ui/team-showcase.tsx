@@ -1,6 +1,8 @@
+"use client";
+
 import { useState } from 'react';
 import { FaLinkedinIn, FaTwitter, FaBehance, FaInstagram } from 'react-icons/fa';
-import { cn } from '../../lib/utils';
+import { cn } from "@/lib/utils";
 
 export interface TeamMember {
   id: string;
@@ -20,21 +22,21 @@ const DEFAULT_MEMBERS: TeamMember[] = [
     id: '1',
     name: 'Chadrack',
     role: 'director of photography',
-    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&h=450&q=80',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&h=450&q=80',
     social: { twitter: '#', linkedin: '#', behance: '#' },
   },
   {
     id: '2',
     name: 'Mak VieSAinte',
     role: 'FOUNDER',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&h=450&q=80',
+    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&h=450&q=80',
     social: { twitter: '#', linkedin: '#' },
   },
   {
     id: '3',
     name: 'Osiris Balonga',
     role: 'LEAD FRONT-END',
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&h=450&q=80',
+    image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=400&h=450&q=80',
     social: { twitter: '#', linkedin: '#' },
   },
   {
@@ -55,7 +57,7 @@ const DEFAULT_MEMBERS: TeamMember[] = [
     id: '6',
     name: 'Jemima',
     role: 'MAKE-UP ARTISTE',
-    image: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=400&h=450&q=80',
+    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&h=450&q=80',
     social: { instagram: '#' } as TeamMember['social'],
   },
 ];
@@ -72,16 +74,16 @@ export default function TeamShowcase({ members = DEFAULT_MEMBERS }: TeamShowcase
   const col3 = members.filter((_, i) => i % 3 === 2);
 
   return (
-    <div className="team-showcase-container">
+    <div className="flex flex-col md:flex-row items-start gap-8 md:gap-10 lg:gap-14 select-none w-full max-w-5xl mx-auto py-8 px-4 md:px-6 font-sans">
       {/* ── Left: photo grid ── */}
-      <div className="team-grid-wrapper">
+      <div className="flex gap-2 md:gap-3 w-full max-w-md md:w-[480px] shrink-0 justify-start">
         {/* Column 1 */}
-        <div className="team-col">
+        <div className="flex-1 flex flex-col gap-2 md:gap-3">
           {col1.map((member) => (
             <PhotoCard
               key={member.id}
               member={member}
-              className="card-col-1"
+              className="w-full aspect-[4/5]"
               hoveredId={hoveredId}
               onHover={setHoveredId}
             />
@@ -89,12 +91,12 @@ export default function TeamShowcase({ members = DEFAULT_MEMBERS }: TeamShowcase
         </div>
 
         {/* Column 2 */}
-        <div className="team-col team-col-2">
+        <div className="flex-1 flex flex-col gap-2 md:gap-3 mt-[48px] sm:mt-[56px] md:mt-[68px]">
           {col2.map((member) => (
             <PhotoCard
               key={member.id}
               member={member}
-              className="card-col-2"
+              className="w-full aspect-[4/5]"
               hoveredId={hoveredId}
               onHover={setHoveredId}
             />
@@ -102,12 +104,12 @@ export default function TeamShowcase({ members = DEFAULT_MEMBERS }: TeamShowcase
         </div>
 
         {/* Column 3 */}
-        <div className="team-col team-col-3">
+        <div className="flex-1 flex flex-col gap-2 md:gap-3 mt-[22px] sm:mt-[26px] md:mt-[32px]">
           {col3.map((member) => (
             <PhotoCard
               key={member.id}
               member={member}
-              className="card-col-3"
+              className="w-full aspect-[4/5]"
               hoveredId={hoveredId}
               onHover={setHoveredId}
             />
@@ -116,7 +118,7 @@ export default function TeamShowcase({ members = DEFAULT_MEMBERS }: TeamShowcase
       </div>
 
       {/* ── Right: member name list*/}
-      <div className="team-member-list">
+      <div className="flex flex-col sm:grid sm:grid-cols-2 md:flex md:flex-col gap-4 md:gap-5 pt-0 md:pt-2 flex-1 w-full">
         {members.map((member) => (
           <MemberRow
             key={member.id}
@@ -151,7 +153,7 @@ function PhotoCard({
   return (
     <div
       className={cn(
-        'team-photo-card',
+        'overflow-hidden rounded-xl cursor-pointer flex-shrink-0 transition-opacity duration-400',
         className,
         isDimmed ? 'opacity-60' : 'opacity-100',
       )}
@@ -161,6 +163,7 @@ function PhotoCard({
       <img
         src={member.image}
         alt={member.name}
+        className="w-full h-full object-cover transition-[filter] duration-500"
         style={{
           filter: isActive ? 'grayscale(0) brightness(1)' : 'grayscale(1) brightness(0.77)',
         }}
@@ -189,24 +192,24 @@ function MemberRow({
   return (
     <div
       className={cn(
-        'member-row',
+        'cursor-pointer transition-opacity duration-300',
         isDimmed ? 'opacity-50' : 'opacity-100',
       )}
       onMouseEnter={() => onHover(member.id)}
       onMouseLeave={() => onHover(null)}
     >
       {/* Name + social*/}
-      <div className="member-row-header">
+      <div className="flex items-center gap-2.5">
         <span
           className={cn(
-            'member-dot',
-            isActive && 'active'
+            'w-4 h-3 rounded-[5px] flex-shrink-0 transition-all duration-300',
+            isActive ? 'bg-foreground w-5' : 'bg-foreground/25',
           )}
         />
         <span
           className={cn(
-            'member-name',
-            isActive && 'active'
+            'text-base md:text-[18px] font-semibold leading-none tracking-tight transition-colors duration-300',
+            isActive ? 'text-foreground' : 'text-foreground/80',
           )}
         >
           {member.name}
@@ -216,8 +219,10 @@ function MemberRow({
         {hasSocial && (
           <div
             className={cn(
-              'member-socials',
-              isActive ? 'active' : 'inactive'
+              'flex items-center gap-1.5 ml-0.5 transition-all duration-200',
+              isActive
+                ? 'opacity-100 translate-x-0'
+                : 'opacity-0 -translate-x-2 pointer-events-none',
             )}
           >
             {member.social?.twitter && (
@@ -226,7 +231,7 @@ function MemberRow({
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="member-social-link"
+                className="p-1 rounded text-muted-foreground hover:text-foreground hover:bg-foreground/10 transition-all duration-150 hover:scale-110"
                 title="X / Twitter"
               >
                 <FaTwitter size={10} />
@@ -238,7 +243,7 @@ function MemberRow({
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="member-social-link"
+                className="p-1 rounded text-muted-foreground hover:text-foreground hover:bg-foreground/10 transition-all duration-150 hover:scale-110"
                 title="LinkedIn"
               >
                 <FaLinkedinIn size={10} />
@@ -250,7 +255,7 @@ function MemberRow({
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="member-social-link"
+                className="p-1 rounded text-muted-foreground hover:text-foreground hover:bg-foreground/10 transition-all duration-150 hover:scale-110"
                 title="Instagram"
               >
                 <FaInstagram size={10} />
@@ -262,7 +267,7 @@ function MemberRow({
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="member-social-link"
+                className="p-1 rounded text-muted-foreground hover:text-foreground hover:bg-foreground/10 transition-all duration-150 hover:scale-110"
                 title="Behance"
               >
                 <FaBehance size={10} />
@@ -273,7 +278,7 @@ function MemberRow({
       </div>
 
       {/* Role */}
-      <p className="member-role">
+      <p className="mt-1.5 pl-[27px] text-[7px] md:text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
         {member.role}
       </p>
     </div>
