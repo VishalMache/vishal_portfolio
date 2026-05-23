@@ -121,7 +121,7 @@ export default function TechStackSection() {
 
         {/* Interactive Play Prompt */}
         <motion.div 
-          className="mt-12 flex flex-col sm:flex-row justify-center items-center gap-4 font-display tech-reveal"
+          className="mt-20 flex flex-col sm:flex-row justify-center items-center gap-4 font-display tech-reveal"
           animate={{ y: [0, -3, 0] }}
           transition={{
             duration: 4,

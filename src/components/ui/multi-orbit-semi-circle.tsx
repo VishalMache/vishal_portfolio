@@ -23,6 +23,7 @@ const DEFAULT_MIDDLE: TechItem[] = [
   { name: "Supabase", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg" },
   { name: "Firebase", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-original.svg" },
   { name: "Tailwind CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
+  { name: "Framer", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/framer/framer-original.svg" },
   { name: "Prisma", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg" },
 ];
 
@@ -234,9 +235,9 @@ export default function MultiOrbitSemiCircle({
             }}
           />
 
-          <SemiCircleOrbit radius={baseWidth * 0.22} centerX={centerX} centerY={centerY} items={innerItems} count={6} iconSize={iconSize} />
-          <SemiCircleOrbit radius={baseWidth * 0.36} centerX={centerX} centerY={centerY} items={middleItems} count={8} iconSize={iconSize} />
-          <SemiCircleOrbit radius={baseWidth * 0.5} centerX={centerX} centerY={centerY} items={outerItems} count={10} iconSize={iconSize} />
+          <SemiCircleOrbit radius={baseWidth * 0.22} centerX={centerX} centerY={centerY} items={innerItems} count={innerItems.length} iconSize={iconSize} />
+          <SemiCircleOrbit radius={baseWidth * 0.36} centerX={centerX} centerY={centerY} items={middleItems} count={middleItems.length} iconSize={iconSize} />
+          <SemiCircleOrbit radius={baseWidth * 0.5} centerX={centerX} centerY={centerY} items={outerItems} count={outerItems.length} iconSize={iconSize} />
         </div>
       </div>
     </div>

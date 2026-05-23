@@ -3550,3 +3550,19 @@ button {
   }
 }
 
+/* ========================================
+   TAILWIND OPACITY HELPER FOR CUSTOM HEX BORDERS
+   Allows classes like border-border/20 to render 
+   with perfect transparency instead of white browser fallbacks.
+======================================== */
+.border-border\/10 { border-color: color-mix(in srgb, var(--color-border) 10%, transparent) !important; }
+.border-border\/20 { border-color: color-mix(in srgb, var(--color-border) 20%, transparent) !important; }
+.border-border\/30 { border-color: color-mix(in srgb, var(--color-border) 30%, transparent) !important; }
+.border-border\/40 { border-color: color-mix(in srgb, var(--color-border) 40%, transparent) !important; }
+.border-border\/50 { border-color: color-mix(in srgb, var(--color-border) 50%, transparent) !important; }
+.border-border\/60 { border-color: color-mix(in srgb, var(--color-border) 60%, transparent) !important; }
+.border-border\/70 { border-color: color-mix(in srgb, var(--color-border) 70%, transparent) !important; }
+.border-border\/80 { border-color: color-mix(in srgb, var(--color-border) 80%, transparent) !important; }
+.border-border\/90 { border-color: color-mix(in srgb, var(--color-border) 90%, transparent) !important; }
+
+
