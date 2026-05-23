@@ -6,7 +6,7 @@ import { ShiningText } from "@/components/ui/shining-text";
 
 export default function HeroSection() {
   return (
-    <section id="home" className="hero">
+    <section id="home" className="hero" data-cursor-guide="Welcome — this is where it all starts. Scroll down to explore.">
       {/* Left — Text content */}
       <div className="hero__content">
         {/* Availability badge */}

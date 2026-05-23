@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import MultiOrbitSemiCircle from "./ui/multi-orbit-semi-circle";
 import TechMemoryGame from "./ui/TechMemoryGame";
+import { Gamepad2, X, Sparkles } from "lucide-react";
 
 export default function TechStackSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -28,7 +29,7 @@ export default function TechStackSection() {
   }, []);
 
   return (
-    <section id="tech-stack" className="tech-section" ref={sectionRef}>
+    <section id="tech-stack" className="tech-section" ref={sectionRef} data-cursor-guide="The tools & frameworks I use to bring ideas to life.">
       <div className="tech-container">
         {/* Section Header outside the IDE */}
         <div className="tech-header tech-reveal text-center">
@@ -119,23 +120,84 @@ export default function TechStackSection() {
         </div>
 
         {/* Interactive Play Prompt */}
-        <div className="mt-8 flex flex-row justify-center items-center gap-3 font-display text-sm md:text-base tech-reveal">
-          <span className="text-text-secondary tracking-wide">
-            {showGame ? "Having fun?" : "Wanna have some fun?"}
+        <motion.div 
+          className="mt-12 flex flex-col sm:flex-row justify-center items-center gap-4 font-display tech-reveal"
+          animate={{ y: [0, -3, 0] }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        >
+          <span className="text-text-secondary tracking-wider text-xs md:text-sm font-semibold uppercase flex items-center gap-2 select-none">
+            <Sparkles className="w-4 h-4 text-amber-500 dark:text-amber-400 animate-pulse" />
+            {showGame ? "Enjoying the challenge?" : "Discover an interactive secret?"}
           </span>
-          <button
-            onClick={() => setShowGame((v) => !v)}
-            className="relative group px-5 py-2.5 rounded-full overflow-hidden transition-all duration-300 shadow-sm border border-border/80 bg-surface/50 dark:bg-zinc-900/50 hover:bg-text hover:text-bg hover:scale-105 active:scale-95 flex items-center gap-2"
-          >
-            <span className="absolute inset-0 bg-gradient-to-r from-violet-500/10 via-pink-500/10 to-amber-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-            <span className="relative font-bold uppercase tracking-wider text-xs md:text-sm">
-              {showGame ? "Hide" : "Play"}
-            </span>
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500 group-hover:bg-emerald-400">
-              <span className="absolute -inset-0.5 rounded-full bg-emerald-500 opacity-75 animate-ping group-hover:bg-emerald-400" />
-            </span>
-          </button>
-        </div>
+
+          <div className="relative">
+            <motion.button
+              onClick={() => setShowGame((v) => !v)}
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
+              className="relative group px-6 py-3 rounded-full overflow-hidden transition-all duration-300 shadow-xl border border-white/20 dark:border-zinc-800/80 bg-zinc-950/95 text-white hover:border-white/30 flex items-center gap-3.5"
+            >
+              {/* Shimmering glass sheen highlight */}
+              <motion.span 
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none"
+                initial={{ x: "-100%" }}
+                whileHover={{ x: "100%" }}
+                transition={{ 
+                  repeat: Infinity, 
+                  repeatType: "loop", 
+                  duration: 1.6, 
+                  ease: "linear" 
+                }}
+              />
+
+              {/* Shimmer effect inside */}
+              <span className="absolute inset-0 bg-gradient-to-r from-violet-500/20 via-pink-500/20 to-amber-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+              {/* Animated Gamepad or Close Icon */}
+              <span className="relative z-10 transition-transform duration-300 group-hover:scale-110">
+                {showGame ? (
+                  <motion.span
+                    initial={{ rotate: -90, scale: 0.8 }}
+                    animate={{ rotate: 0, scale: 1 }}
+                    exit={{ rotate: 90, scale: 0.8 }}
+                    transition={{ duration: 0.2 }}
+                    className="block animate-none"
+                  >
+                    <X className="w-[18px] h-[18px] text-rose-400" />
+                  </motion.span>
+                ) : (
+                  <motion.span
+                    animate={{ rotate: [0, -10, 10, -10, 0] }}
+                    transition={{
+                      duration: 2.5,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                    className="block"
+                  >
+                    <Gamepad2 className="w-[18px] h-[18px] text-pink-400" />
+                  </motion.span>
+                )}
+              </span>
+
+              {/* Text Label */}
+              <span className="relative z-10 font-bold uppercase tracking-wider text-xs md:text-sm font-display text-zinc-100">
+                {showGame ? "Close Game" : "Play Memory Game"}
+              </span>
+
+              {/* Double wave ripple ping status badge */}
+              <span className="relative flex h-2 w-2">
+                <span className={`animate-ping absolute inline-flex h-full w-full rounded-full ${showGame ? "bg-red-400" : "bg-emerald-400"} opacity-75`}></span>
+                <span className={`animate-ping absolute inline-flex h-full w-full rounded-full ${showGame ? "bg-red-400" : "bg-emerald-400"} opacity-40 delay-300`}></span>
+                <span className={`relative inline-flex rounded-full h-2 w-2 ${showGame ? "bg-red-500" : "bg-emerald-500"}`}></span>
+              </span>
+            </motion.button>
+          </div>
+        </motion.div>
 
         {/* Memory Game */}
         <AnimatePresence>

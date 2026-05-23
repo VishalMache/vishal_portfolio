@@ -51,7 +51,7 @@ export default function ProjectsSection() {
   const col3 = filteredProjects.filter((_, i) => i % 3 === 2);
 
   return (
-    <section id="projects" className="py-24 px-6 md:px-12 lg:px-24 bg-bg border-t border-border/50 relative overflow-hidden transition-colors duration-500">
+    <section id="projects" className="py-24 px-6 md:px-12 lg:px-24 bg-bg border-t border-border/50 relative overflow-hidden transition-colors duration-500" data-cursor-guide="A curated showcase of my best work. Click any project to explore.">
       {/* Background ambient light */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-bg-alt/5 to-transparent pointer-events-none" />
 

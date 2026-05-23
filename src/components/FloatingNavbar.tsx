@@ -49,7 +49,7 @@ export default function FloatingNavbar() {
   };
 
   return (
-    <nav className="floating-nav" role="navigation" aria-label="Floating Navigation">
+    <nav className="floating-nav" role="navigation" aria-label="Floating Navigation" data-cursor-guide="Navigation — jump to any section instantly.">
       {/* Rotated Brand Title Text (Desktop only) */}
       <div className="floating-nav__text-wrapper">
         <span className="floating-nav__text">

@@ -2293,6 +2293,48 @@ button {
 }
 
 /* ========================================
+   CURSOR GUIDE PILL
+======================================== */
+.cursor-guide-pill {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9998; /* just below the cursor dot (9999) */
+  pointer-events: none;
+  max-width: 220px;
+  padding: 8px 14px;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18), 0 0 0 0.5px rgba(255, 255, 255, 0.06) inset;
+}
+
+[data-theme='dark'] .cursor-guide-pill {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35), 0 0 0 0.5px rgba(255, 255, 255, 0.04) inset;
+}
+
+.cursor-guide-pill__text {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.9);
+  display: block;
+  white-space: normal;
+  word-break: break-word;
+}
+
+[data-theme='dark'] .cursor-guide-pill__text {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* ========================================
    TECH STACK SECTION
 ======================================== */
 .tech-section {

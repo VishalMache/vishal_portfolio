@@ -28,7 +28,7 @@ export default function AboutSection() {
   }, []);
 
   return (
-    <section id="about" className="about" ref={sectionRef}>
+    <section id="about" className="about" ref={sectionRef} data-cursor-guide="My story, education & what drives me as a creator.">
       <div className="about__container">
         {/* Section Header */}
         <div className="about__header reveal">
