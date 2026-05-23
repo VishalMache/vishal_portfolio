@@ -32,10 +32,6 @@ export default function HeroSection() {
 
         {/* CTAs */}
         <div className="hero__cta-group">
-          <a href="#projects" className="hero__cta">
-            View My Work
-            <span className="hero__cta-arrow">→</span>
-          </a>
           <a href="#contact" className="hero__cta-secondary">
             Get in Touch
             <svg
