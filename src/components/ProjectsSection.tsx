@@ -73,12 +73,14 @@ export default function ProjectsSection() {
                 <button
                   key={category}
                   onClick={() => setActiveCategory(category)}
-                  className="relative px-5 py-2 font-display text-xs md:text-sm font-semibold uppercase tracking-wider text-text-secondary hover:text-text rounded-full transition-colors duration-200"
+                  className={`relative px-5 py-2 font-display text-xs md:text-sm font-semibold uppercase tracking-wider rounded-full transition-colors duration-200 ${
+                    isActive ? "text-[var(--color-accent-skin)]" : "text-text-secondary hover:text-text"
+                  }`}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="activeFilter"
-                      className="absolute inset-0 bg-bg-alt/80 border border-border/60 rounded-full shadow-inner"
+                      className="absolute inset-0 bg-bg-alt/80 border border-[var(--color-accent-skin)]/40 rounded-full shadow-inner"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}

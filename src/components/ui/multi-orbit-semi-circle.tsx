@@ -193,7 +193,7 @@ export default function MultiOrbitSemiCircle({
       <div className="relative flex flex-col items-center text-center z-10 w-full">
         {title && <h2 className="section-title text-center my-4">{title}</h2>}
         {description && (
-          <p className="mb-12 max-w-2xl text-gray-600 dark:text-gray-400 lg:text-lg px-4">
+          <p className="mb-12 max-w-2xl text-[var(--color-accent-skin)] lg:text-lg px-4">
             {description}
           </p>
         )}

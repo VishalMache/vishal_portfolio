@@ -36,7 +36,7 @@ export default function TechStackSection() {
         {/* Section Header outside the IDE */}
         <div className="tech-header tech-reveal text-center mb-10">
           <h2 className="section-title">Tech Stack & Activity</h2>
-          <p className="tech-subtitle mx-auto">
+          <p className="tech-subtitle mx-auto text-[var(--color-accent-skin)]">
             The tools, languages, and frameworks I use to bring ideas to life.
           </p>
         </div>

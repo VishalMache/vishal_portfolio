@@ -7,6 +7,7 @@ import TechStackSection from "@/components/TechStackSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import Preloader from "@/components/Preloader";
 import { CustomCursor } from "@/components/ui/CustomCursor";
+import AiAssistant from "@/components/AiAssistant";
 
 export default function Home() {
   return (
@@ -38,7 +39,8 @@ export default function Home() {
         <ProjectsSection />
       </main>
 
-
+      {/* AI Assistant Chat Bar */}
+      <AiAssistant />
     </div>
   );
 }
