@@ -254,7 +254,7 @@ export default function ProjectsSection() {
                       href={selectedProject.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-6 py-2.5 font-display text-xs md:text-sm font-semibold uppercase tracking-wider rounded-full bg-text text-bg hover:opacity-90 transition-all duration-200 flex items-center gap-2"
+                      className="px-6 py-2.5 font-display text-xs md:text-sm font-semibold uppercase tracking-wider rounded-full bg-text text-bg hover:bg-[var(--color-accent-skin)] hover:text-white transition-all duration-300 flex items-center gap-2"
                     >
                       Launch App <span>↗</span>
                     </a>
@@ -329,7 +329,7 @@ function ProjectPhotoCard({
           <p className="text-[9px] font-display font-medium uppercase tracking-wider text-zinc-400">{project.role}</p>
           <h4 className="text-xs font-semibold text-white mt-0.5">{project.title}</h4>
         </div>
-        <span className="text-zinc-400 group-hover:text-white transition-colors">
+        <span className="text-zinc-400 group-hover:text-[var(--color-accent-skin)] transition-colors">
           <ArrowUpRight size={14} />
         </span>
       </div>
