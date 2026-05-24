@@ -3,17 +3,13 @@
 import { personalInfo } from "@/lib/data";
 import Image from "next/image";
 import { ShiningText } from "@/components/ui/shining-text";
+import { PenTool, Code, User } from "lucide-react";
 
 export default function HeroSection() {
   return (
     <section id="home" className="hero" data-cursor-guide="Welcome — this is where it all starts. Scroll down to explore.">
       {/* Left — Text content */}
       <div className="hero__content">
-        {/* Availability badge */}
-        <div className="hero__availability">
-          <ShiningText text={personalInfo.availability} />
-        </div>
-
         {/* Greeting */}
         <p className="hero__greeting">Hello, I&apos;m</p>
 
@@ -130,6 +126,22 @@ export default function HeroSection() {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Floating Badges - Moved to hero root to completely bypass any column clipping */}
+      <div className="hero__badge hero__badge--1">
+        <div className="hero__badge-icon"><PenTool size={18} /></div>
+        <span>UI/UX Design</span>
+      </div>
+      
+      <div className="hero__badge hero__badge--2">
+        <div className="hero__badge-icon"><Code size={18} /></div>
+        <span>Web Development</span>
+      </div>
+      
+      <div className="hero__badge hero__badge--3">
+        <div className="hero__badge-icon"><User size={18} /></div>
+        <span>Web Consulting</span>
       </div>
     </section>
   );

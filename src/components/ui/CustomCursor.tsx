@@ -12,6 +12,13 @@ export function CustomCursor() {
   // Delay timer ref so guide doesn't flash on fast scroll
   const guideTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  const clearGuideTimer = () => {
+    if (guideTimerRef.current) {
+      clearTimeout(guideTimerRef.current);
+      guideTimerRef.current = null;
+    }
+  };
+
   // Position of raw mouse cursor
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
@@ -52,7 +59,7 @@ export function CustomCursor() {
       if (cursorAttrEl) {
         const type = cursorAttrEl.getAttribute("data-cursor");
         if (type === "view" || type === "close" || type === "pointer") {
-          setCursorType(type as any);
+          setCursorType(type as "default" | "view" | "close" | "pointer");
           // Hide guide when on interactive cursor elements
           clearGuideTimer();
           setGuideText(null);
@@ -119,13 +126,6 @@ export function CustomCursor() {
       if (guideTimerRef.current) clearTimeout(guideTimerRef.current);
     };
   }, [guideText]);
-
-  function clearGuideTimer() {
-    if (guideTimerRef.current) {
-      clearTimeout(guideTimerRef.current);
-      guideTimerRef.current = null;
-    }
-  }
 
   if (!isVisible) return null;
 

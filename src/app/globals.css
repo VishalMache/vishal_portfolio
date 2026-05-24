@@ -451,44 +451,49 @@ button {
 
 .hero__greeting {
   font-family: var(--font-body);
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 4px;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 5px;
   text-transform: uppercase;
-  color: var(--color-accent);
-  margin-bottom: var(--space-lg);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-md);
   opacity: 0;
   transform: translateY(20px);
-  animation: heroReveal 0.8s var(--ease-out-expo) 0.3s forwards;
+  animation: heroReveal 0.8s var(--ease-out-expo) 0.1s forwards;
 }
 
 .hero__name {
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 4.5vw, 4.2rem);
-  font-weight: 800;
+  font-size: clamp(3.5rem, 6.5vw, 6rem);
+  font-weight: 900;
   line-height: 1.05;
-  letter-spacing: -1.5px;
+  letter-spacing: -2px;
   color: var(--color-text);
   margin-bottom: var(--space-md);
   opacity: 0;
   transform: translateY(30px);
-  animation: heroReveal 0.9s var(--ease-out-expo) 0.45s forwards;
+  animation: heroReveal 0.9s var(--ease-out-expo) 0.3s forwards;
 }
 
 .hero__name-accent {
-  color: var(--color-accent);
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
   position: relative;
   display: inline-block;
+  padding-right: 8px; /* buffer for italics/bold */
 }
 
 .hero__name-accent::after {
   content: '';
   position: absolute;
-  bottom: 2px;
+  bottom: 6px;
   left: 0;
   width: 100%;
-  height: 3px;
-  background: var(--color-accent);
+  height: 4px;
+  background: linear-gradient(90deg, #6366f1, #ec4899);
   border-radius: 2px;
   transform: scaleX(0);
   transform-origin: left;
@@ -497,24 +502,24 @@ button {
 
 .hero__tagline {
   font-family: var(--font-display);
-  font-size: clamp(1rem, 1.6vw, 1.35rem);
-  font-weight: 500;
-  color: var(--color-text-secondary);
-  line-height: 1.5;
-  max-width: 460px;
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 1.4;
+  max-width: 480px;
   margin-bottom: var(--space-xl);
   opacity: 0;
   transform: translateY(25px);
-  animation: heroReveal 0.9s var(--ease-out-expo) 0.6s forwards;
+  animation: heroReveal 0.9s var(--ease-out-expo) 0.45s forwards;
 }
 
 .hero__description {
   font-family: var(--font-body);
-  font-size: 0.92rem;
+  font-size: 1.05rem;
   font-weight: 400;
   color: var(--color-text-tertiary);
   line-height: 1.7;
-  max-width: 460px;
+  max-width: 480px;
   margin-bottom: var(--space-xl);
   opacity: 0;
   transform: translateY(25px);
@@ -611,7 +616,7 @@ button {
   padding: 0;
   position: relative;
   z-index: 2;
-  overflow: hidden;
+  overflow: visible !important;
 }
 
 /* Hero image side */
@@ -620,6 +625,7 @@ button {
   height: 100%;
   position: relative;
   opacity: 0;
+  overflow: visible !important;
   animation: heroImageReveal 1.2s var(--ease-out-expo) 0.2s forwards;
 }
 
@@ -803,6 +809,113 @@ button {
   color: var(--color-text);
 }
 
+/* Floating Badges for Hero Image */
+.hero__badge {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #ffffff;
+  color: #131415;
+  padding: 12px 18px 12px 12px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.85rem;
+  z-index: 10;
+  opacity: 0;
+  animation: heroBadgeReveal 0.8s var(--ease-out-expo) forwards;
+  transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s ease;
+  will-change: transform;
+}
+
+[data-theme='dark'] .hero__badge {
+  background: #17181A;
+  color: #F3F4F5;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--color-border);
+}
+
+.hero__badge:hover {
+  transform: translateY(-5px) scale(1.02) !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+[data-theme='dark'] .hero__badge:hover {
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+.hero__badge-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: 8px;
+  color: #131415;
+}
+
+[data-theme='dark'] .hero__badge-icon {
+  background: rgba(255, 255, 255, 0.1);
+  color: #F3F4F5;
+}
+
+.hero__badge--1 {
+  top: 25%;
+  left: 45%;
+  animation-delay: 1.4s;
+}
+
+.hero__badge--2 {
+  bottom: 25%;
+  left: 43%;
+  animation-delay: 1.6s;
+}
+
+.hero__badge--3 {
+  top: 60%;
+  right: 2%;
+  animation-delay: 1.8s;
+}
+
+@keyframes heroBadgeReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero__badge {
+    padding: 8px 12px 8px 8px;
+    font-size: 0.75rem;
+    gap: 8px;
+  }
+  .hero__badge-icon {
+    width: 24px;
+    height: 24px;
+  }
+  .hero__badge-icon svg {
+    width: 14px;
+    height: 14px;
+  }
+  .hero__badge--1 { top: 10%; left: -15px; }
+  .hero__badge--2 { bottom: 10%; left: -20px; }
+  .hero__badge--3 { top: 60%; right: -15px; }
+}
+
+@media (max-width: 768px) {
+  .hero__badge {
+    display: none;
+  }
+}
+
 /* Social strip on hero image */
 .hero__socials {
   position: absolute;
@@ -975,7 +1088,7 @@ button {
    ABOUT SECTION
 ======================================== */
 .about {
-  padding: var(--space-5xl) var(--space-3xl) var(--space-xl) var(--space-3xl);
+  padding: var(--space-3xl) var(--space-3xl) var(--space-xl) var(--space-3xl);
   background: var(--color-bg-alt);
 }
 
@@ -985,7 +1098,7 @@ button {
 }
 
 .about__header {
-  margin-bottom: var(--space-4xl);
+  margin-bottom: var(--space-2xl);
   opacity: 0;
   transform: translateY(30px);
   transition: all 0.8s var(--ease-out-expo);
