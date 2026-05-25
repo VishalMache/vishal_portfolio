@@ -14,7 +14,7 @@ export default function FloatingNavbar() {
     setMounted(true);
 
     const handleScroll = () => {
-      const sections = ["home", "about", "tech-stack", "projects"];
+      const sections = ["home", "about", "projects", "tech-stack"];
       // Look at scroll position offsetted by some viewport spacing for a natural transition
       const scrollPosition = window.scrollY + window.innerHeight / 3;
 
@@ -92,21 +92,6 @@ export default function FloatingNavbar() {
             <span className="floating-nav__tooltip">About</span>
           </a>
 
-          {/* Stacks */}
-          <a
-            href="#tech-stack"
-            onClick={(e) => {
-              e.preventDefault();
-              handleScrollTo("tech-stack");
-              setActiveSection("tech-stack");
-            }}
-            className={`floating-nav__btn ${activeSection === "tech-stack" ? "active" : ""}`}
-            aria-label="Tech Stack"
-          >
-            <Cpu size={17} strokeWidth={1.75} />
-            <span className="floating-nav__tooltip">Stacks</span>
-          </a>
-
           {/* Projects */}
           <a
             href="#projects"
@@ -120,6 +105,21 @@ export default function FloatingNavbar() {
           >
             <LayoutGrid size={17} strokeWidth={1.75} />
             <span className="floating-nav__tooltip">Projects</span>
+          </a>
+
+          {/* Stacks */}
+          <a
+            href="#tech-stack"
+            onClick={(e) => {
+              e.preventDefault();
+              handleScrollTo("tech-stack");
+              setActiveSection("tech-stack");
+            }}
+            className={`floating-nav__btn ${activeSection === "tech-stack" ? "active" : ""}`}
+            aria-label="Tech Stack"
+          >
+            <Cpu size={17} strokeWidth={1.75} />
+            <span className="floating-nav__tooltip">Stacks</span>
           </a>
         </div>
 

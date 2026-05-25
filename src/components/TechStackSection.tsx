@@ -41,12 +41,6 @@ export default function TechStackSection() {
           </p>
         </div>
 
-        {/* GitHub Contributions Calendar */}
-        <div className="w-full max-w-4xl mx-auto mb-16 tech-reveal">
-          <h3 className="font-display font-bold text-xl mb-4 text-text pl-2 border-l-4 border-[var(--color-accent-skin)]">GitHub Contributions</h3>
-          <GitHubCalendar username="VishalMache" />
-        </div>
-
         {/* IDE Mockup Window */}
         <div className="ide-frame tech-reveal">
           {/* IDE Header */}
@@ -175,6 +169,12 @@ export default function TechStackSection() {
               <span className="ml-3">UTF-8</span>
             </div>
           </div>
+        </div>
+
+        {/* GitHub Contributions Calendar */}
+        <div className="w-full max-w-4xl mx-auto mt-20 mb-8 tech-reveal">
+          <h3 className="font-display font-bold text-xl mb-4 text-text pl-2 border-l-4 border-[var(--color-accent-skin)]">GitHub Contributions</h3>
+          <GitHubCalendar username="VishalMache" />
         </div>
 
         {/* Interactive Play Prompt */}

@@ -66,14 +66,20 @@ export default function ProjectsSection() {
           </div>
 
           {/* Dynamic Filtering Tabs */}
-          <div className="flex flex-wrap gap-1.5 bg-surface p-1.5 rounded-full border border-border/50 self-start md:self-end">
+          <div 
+            className="flex flex-nowrap overflow-x-auto no-scrollbar gap-1 bg-surface p-1 rounded-full border border-border/50 self-start md:self-end max-w-full"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            <style dangerouslySetInnerHTML={{__html: `
+              .no-scrollbar::-webkit-scrollbar { display: none; }
+            `}} />
             {CATEGORIES.map((category) => {
               const isActive = activeCategory === category;
               return (
                 <button
                   key={category}
                   onClick={() => setActiveCategory(category)}
-                  className={`relative px-5 py-2 font-display text-xs md:text-sm font-semibold uppercase tracking-wider rounded-full transition-colors duration-200 ${
+                  className={`relative whitespace-nowrap px-3.5 py-1.5 font-display text-[10px] sm:text-xs font-semibold uppercase tracking-wider rounded-full transition-colors duration-200 ${
                     isActive ? "text-[var(--color-accent-skin)]" : "text-text-secondary hover:text-text"
                   }`}
                 >

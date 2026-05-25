@@ -34,15 +34,15 @@ const GitHubCalendar = ({ data, username, colors = ["var(--color-bg-alt)", "#9be
         .then(jsonData => {
           if (jsonData && jsonData.contributions) {
             const flatData = jsonData.contributions.flat().map((item: any) => ({
-              date: new Date(item.date),
-              count: item.contributionCount
+              date: String(item.date),
+              count: Number(item.contributionCount)
             }));
             setContributions(flatData);
           }
         })
         .catch(err => console.error("Failed to fetch GitHub data:", err));
     } else if (data) {
-      setContributions(data.map((item) => ({ ...item, date: new Date(item.date) })));
+      setContributions(data);
     }
   }, [data, username]);
 

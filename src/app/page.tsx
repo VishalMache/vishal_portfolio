@@ -35,8 +35,8 @@ export default function Home() {
       <main className="main-content">
         <HeroSection />
         <AboutSection />
-        <TechStackSection />
         <ProjectsSection />
+        <TechStackSection />
       </main>
 
       {/* AI Assistant Chat Bar */}
