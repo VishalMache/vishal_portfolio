@@ -22,7 +22,7 @@ export default function AboutSection() {
         >
           <h2 className="text-4xl md:text-5xl font-display font-bold tracking-tight mb-8">About Me</h2>
           <div className="text-xl md:text-2xl text-text-sec leading-relaxed space-y-6">
-            <p>{personalInfo.bio}</p>
+            <p>{personalInfo.aboutSummary}</p>
           </div>
         </motion.div>
 

@@ -10,6 +10,7 @@ export const personalInfo = {
   github: "https://github.com/VishalMache",
   linkedin: "https://linkedin.com/in/vishal-mache",
   bio: `Passionate about turning complex ideas into simple and meaningful digital experiences, I enjoy building intelligent applications that combine modern technology, scalability, and user-focused design to solve real-world problems.`,
+  aboutSummary: `I am an Android and Full-Stack Developer pursuing a B.Tech in Computer Science and Engineering with a focus on AI and Ml . I have hands-on experience in developing production ready mobile applications and web applications.My projects emphasize innovative solution in AI,cybersecurity and user engagement.I excel in collaborating on cutting edge technology projects development,with a paasion for delivering seamless user experiences.`,
 };
 
 export const navLinks = [
