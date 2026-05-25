@@ -9,6 +9,11 @@ import Preloader from "@/components/Preloader";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import AiAssistant from "@/components/AiAssistant";
 
+import MilestonesSection from "@/components/MilestonesSection";
+
+import ContactSection from "@/components/ContactSection";
+import Footer from "@/components/Footer";
+
 export default function Home() {
   return (
     <div className="app-layout">
@@ -35,8 +40,10 @@ export default function Home() {
       <main className="main-content">
         <HeroSection />
         <AboutSection />
+        <MilestonesSection />
         <ProjectsSection />
         <TechStackSection />
+        <Footer />
       </main>
 
       {/* AI Assistant Chat Bar */}

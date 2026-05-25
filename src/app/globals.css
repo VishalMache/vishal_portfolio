@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -800,44 +800,48 @@ button {
   position: absolute;
   display: flex;
   align-items: center;
-  gap: 12px;
-  background: #ffffff;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
   color: #131415;
-  padding: 12px 18px 12px 12px;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  padding: 8px 14px 8px 8px;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 0.85rem;
+  font-weight: 600;
+  font-size: 0.8rem;
   z-index: 10;
   opacity: 0;
   animation: heroBadgeReveal 0.8s var(--ease-out-expo) forwards;
-  transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s ease;
+  transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s ease, background 0.3s ease;
   will-change: transform;
 }
 
 [data-theme='dark'] .hero__badge {
-  background: #17181A;
-  color: #F3F4F5;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  border: 1px solid var(--color-border);
+  background: rgba(23, 24, 26, 0.65);
+  backdrop-filter: blur(8px);
+  color: rgba(243, 244, 245, 0.9);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .hero__badge:hover {
-  transform: translateY(-5px) scale(1.02) !important;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px) scale(1.02) !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.95);
 }
 
 [data-theme='dark'] .hero__badge:hover {
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  background: rgba(23, 24, 26, 0.85);
 }
 
 .hero__badge-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   background: var(--color-accent-skin);
   border-radius: 8px;
   color: #fff;
@@ -849,20 +853,20 @@ button {
 }
 
 .hero__badge--1 {
-  top: 25%;
-  left: 45%;
+  top: 18%;
+  left: 47%;
   animation-delay: 1.4s;
 }
 
 .hero__badge--2 {
-  bottom: 25%;
-  left: 43%;
+  bottom: 32%;
+  left: 44%;
   animation-delay: 1.6s;
 }
 
 .hero__badge--3 {
-  top: 60%;
-  right: 2%;
+  top: 40%;
+  right: 5%;
   animation-delay: 1.8s;
 }
 
@@ -3664,4 +3668,44 @@ button {
 .border-border\/80 { border-color: color-mix(in srgb, var(--color-border) 80%, transparent) !important; }
 .border-border\/90 { border-color: color-mix(in srgb, var(--color-border) 90%, transparent) !important; }
 
+/* ========================================
+   PERSPECTIVE HIGHLIGHT EFFECT
+======================================== */
+:root {
+  --perspective-red-bg: #e89c9c;
+  --perspective-red-ring: 220, 130, 130;
+  --perspective-purple-bg: #b8a0db;
+  --perspective-purple-ring: 160, 120, 220;
+  --perspective-green-bg: #9fd68d;
+  --perspective-green-ring: 120, 200, 100;
+  --perspective-warm-bg: var(--color-accent-skin);
+  --perspective-warm-ring: 196, 139, 113;
+}
 
+[data-theme='dark'] {
+  --perspective-red-bg: #d48989;
+  --perspective-red-ring: 200, 120, 120;
+  --perspective-purple-bg: #a78fcd;
+  --perspective-purple-ring: 145, 110, 200;
+  --perspective-green-bg: #8dc77b;
+  --perspective-green-ring: 115, 185, 95;
+  --perspective-warm-bg: var(--color-accent-skin);
+  --perspective-warm-ring: 217, 156, 129;
+}
+
+@keyframes perspective-blur-in {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+.animate-perspective-blur-in {
+  animation: perspective-blur-in 0.8s ease-out forwards;
+}

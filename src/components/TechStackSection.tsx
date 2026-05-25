@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import MultiOrbitSemiCircle from "./ui/multi-orbit-semi-circle";
 import TechMemoryGame from "./ui/TechMemoryGame";
 import { GitHubCalendar } from "./ui/git-hub-calendar";
-import { Gamepad2, X, Sparkles } from "lucide-react";
+import { Gamepad2, X, Sparkles, Trophy } from "lucide-react";
 
 export default function TechStackSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -33,6 +33,121 @@ export default function TechStackSection() {
   return (
     <section id="tech-stack" className="tech-section" ref={sectionRef} data-cursor-guide="The tools & frameworks I use to bring ideas to life.">
       <div className="tech-container">
+        <div className="mb-20">
+        {/* Interactive Play Prompt */}
+        <motion.div 
+          className="mt-12 md:mt-20 flex flex-col sm:flex-row justify-center items-center gap-4 tech-reveal"
+          animate={{ y: [0, -3, 0] }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        >
+          <span 
+            className="text-text-secondary text-lg md:text-xl italic flex items-center gap-2 select-none"
+            style={{ fontFamily: 'var(--font-serif)' }}
+          >
+            <Sparkles className="w-4 h-4 text-amber-500 dark:text-amber-400 animate-pulse" />
+            {showGame ? "Enjoying the challenge?" : "Discover an interactive secret?"}
+          </span>
+
+          <div className="relative">
+            <motion.button
+              onClick={() => setShowGame((v) => !v)}
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
+              className="relative group px-6 py-3 rounded-full overflow-hidden transition-all duration-300 shadow-xl border border-white/20 dark:border-zinc-800/80 bg-zinc-950/95 text-white hover:border-white/30 flex items-center gap-3.5"
+            >
+              {/* Shimmering glass sheen highlight */}
+              <motion.span 
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none"
+                initial={{ x: "-100%" }}
+                whileHover={{ x: "100%" }}
+                transition={{ 
+                  repeat: Infinity, 
+                  repeatType: "loop", 
+                  duration: 1.6, 
+                  ease: "linear" 
+                }}
+              />
+
+              {/* Shimmer effect inside */}
+              <span className="absolute inset-0 bg-gradient-to-r from-violet-500/20 via-pink-500/20 to-amber-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+              {/* Animated Gamepad or Close Icon */}
+              <span className="relative z-10 transition-transform duration-300 group-hover:scale-110">
+                {showGame ? (
+                  <motion.span
+                    initial={{ rotate: -90, scale: 0.8 }}
+                    animate={{ rotate: 0, scale: 1 }}
+                    exit={{ rotate: 90, scale: 0.8 }}
+                    transition={{ duration: 0.2 }}
+                    className="block animate-none"
+                  >
+                    <X className="w-[18px] h-[18px] text-rose-400" />
+                  </motion.span>
+                ) : (
+                  <motion.span
+                    animate={{ rotate: [0, -10, 10, -10, 0] }}
+                    transition={{
+                      duration: 2.5,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                    className="block"
+                  >
+                    <Gamepad2 className="w-[18px] h-[18px] text-pink-400" />
+                  </motion.span>
+                )}
+              </span>
+
+              {/* Text Label */}
+              <span 
+                className="relative z-10 font-medium text-lg md:text-xl text-zinc-100"
+                style={{ fontFamily: 'var(--font-serif)' }}
+              >
+                {showGame ? "Close Game" : "Play Memory Game"}
+              </span>
+
+              {/* Double wave ripple ping status badge */}
+              <span className="relative flex h-2 w-2">
+                <span className={`animate-ping absolute inline-flex h-full w-full rounded-full ${showGame ? "bg-red-400" : "bg-emerald-400"} opacity-75`}></span>
+                <span className={`animate-ping absolute inline-flex h-full w-full rounded-full ${showGame ? "bg-red-400" : "bg-emerald-400"} opacity-40 delay-300`}></span>
+                <span className={`relative inline-flex rounded-full h-2 w-2 ${showGame ? "bg-red-500" : "bg-emerald-500"}`}></span>
+              </span>
+            </motion.button>
+          </div>
+        </motion.div>                  <div className="mt-8 px-4 w-full max-w-md mx-auto mb-6">
+             <div className="relative overflow-hidden rounded-xl bg-surface border border-border shadow-lg flex items-start gap-4 p-4 text-left">
+               <div className="absolute left-0 top-0 bottom-0 w-1 bg-[var(--color-accent-skin)]"></div>
+               <div className="p-2 bg-[var(--color-accent-skin)]/10 rounded-full shrink-0 mt-1">
+                 <Trophy className="w-5 h-5 text-[var(--color-accent-skin)]" />
+               </div>
+               <div>
+                 <h4 className="font-display font-semibold text-text text-sm mb-1">Challenge Unlocked</h4>
+                 <p className="text-text-sec text-xs leading-relaxed">
+                   Beat the <span className="font-semibold text-text">Hard Level</span> to secure your spot on the leaderboard. Finish the year at rank #1 to receive a special gift from Vishal!
+                 </p>
+               </div>
+             </div>
+          </div>
+{/* Memory Game */}
+        <AnimatePresence>
+          {showGame && (
+            <motion.div
+              initial={{ opacity: 0, height: 0, y: -10 }}
+              animate={{ opacity: 1, height: "auto", y: 0 }}
+              exit={{ opacity: 0, height: 0, y: -10 }}
+              transition={{ duration: 0.45, ease: [0.4, 0, 0.2, 1] }}
+              className="overflow-hidden"
+            >
+              <TechMemoryGame onClose={() => setShowGame(false)} />
+            </motion.div>
+          )}
+        </AnimatePresence>
+        </div>
+
         {/* Section Header outside the IDE */}
         <div className="tech-header tech-reveal text-center mb-10">
           <h2 className="section-title">Tech Stack & Activity</h2>
@@ -172,111 +287,13 @@ export default function TechStackSection() {
         </div>
 
         {/* GitHub Contributions Calendar */}
-        <div className="w-full max-w-4xl mx-auto mt-20 mb-8 tech-reveal">
+        <div className="w-full max-w-4xl mx-auto mt-12 md:mt-20 mb-8 tech-reveal">
           <h3 className="font-display font-bold text-xl mb-4 text-text pl-2 border-l-4 border-[var(--color-accent-skin)]">GitHub Contributions</h3>
           <GitHubCalendar username="VishalMache" />
         </div>
 
-        {/* Interactive Play Prompt */}
-        <motion.div 
-          className="mt-20 flex flex-col sm:flex-row justify-center items-center gap-4 tech-reveal"
-          animate={{ y: [0, -3, 0] }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        >
-          <span 
-            className="text-text-secondary text-lg md:text-xl italic flex items-center gap-2 select-none"
-            style={{ fontFamily: 'var(--font-serif)' }}
-          >
-            <Sparkles className="w-4 h-4 text-amber-500 dark:text-amber-400 animate-pulse" />
-            {showGame ? "Enjoying the challenge?" : "Discover an interactive secret?"}
-          </span>
 
-          <div className="relative">
-            <motion.button
-              onClick={() => setShowGame((v) => !v)}
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.96 }}
-              className="relative group px-6 py-3 rounded-full overflow-hidden transition-all duration-300 shadow-xl border border-white/20 dark:border-zinc-800/80 bg-zinc-950/95 text-white hover:border-white/30 flex items-center gap-3.5"
-            >
-              {/* Shimmering glass sheen highlight */}
-              <motion.span 
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none"
-                initial={{ x: "-100%" }}
-                whileHover={{ x: "100%" }}
-                transition={{ 
-                  repeat: Infinity, 
-                  repeatType: "loop", 
-                  duration: 1.6, 
-                  ease: "linear" 
-                }}
-              />
 
-              {/* Shimmer effect inside */}
-              <span className="absolute inset-0 bg-gradient-to-r from-violet-500/20 via-pink-500/20 to-amber-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
-              {/* Animated Gamepad or Close Icon */}
-              <span className="relative z-10 transition-transform duration-300 group-hover:scale-110">
-                {showGame ? (
-                  <motion.span
-                    initial={{ rotate: -90, scale: 0.8 }}
-                    animate={{ rotate: 0, scale: 1 }}
-                    exit={{ rotate: 90, scale: 0.8 }}
-                    transition={{ duration: 0.2 }}
-                    className="block animate-none"
-                  >
-                    <X className="w-[18px] h-[18px] text-rose-400" />
-                  </motion.span>
-                ) : (
-                  <motion.span
-                    animate={{ rotate: [0, -10, 10, -10, 0] }}
-                    transition={{
-                      duration: 2.5,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                    className="block"
-                  >
-                    <Gamepad2 className="w-[18px] h-[18px] text-pink-400" />
-                  </motion.span>
-                )}
-              </span>
-
-              {/* Text Label */}
-              <span 
-                className="relative z-10 font-medium text-lg md:text-xl text-zinc-100"
-                style={{ fontFamily: 'var(--font-serif)' }}
-              >
-                {showGame ? "Close Game" : "Play Memory Game"}
-              </span>
-
-              {/* Double wave ripple ping status badge */}
-              <span className="relative flex h-2 w-2">
-                <span className={`animate-ping absolute inline-flex h-full w-full rounded-full ${showGame ? "bg-red-400" : "bg-emerald-400"} opacity-75`}></span>
-                <span className={`animate-ping absolute inline-flex h-full w-full rounded-full ${showGame ? "bg-red-400" : "bg-emerald-400"} opacity-40 delay-300`}></span>
-                <span className={`relative inline-flex rounded-full h-2 w-2 ${showGame ? "bg-red-500" : "bg-emerald-500"}`}></span>
-              </span>
-            </motion.button>
-          </div>
-        </motion.div>
-
-        {/* Memory Game */}
-        <AnimatePresence>
-          {showGame && (
-            <motion.div
-              initial={{ opacity: 0, height: 0, y: -10 }}
-              animate={{ opacity: 1, height: "auto", y: 0 }}
-              exit={{ opacity: 0, height: 0, y: -10 }}
-              transition={{ duration: 0.45, ease: [0.4, 0, 0.2, 1] }}
-              className="overflow-hidden"
-            >
-              <TechMemoryGame onClose={() => setShowGame(false)} />
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
     </section>
   );

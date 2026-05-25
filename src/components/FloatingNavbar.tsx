@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
-import { Home, User, Cpu, LayoutGrid, Sun, Moon } from "lucide-react";
+import { Home, User, Cpu, LayoutGrid, Sun, Moon, Route } from "lucide-react";
 
 export default function FloatingNavbar() {
   const [mounted, setMounted] = useState(false);
@@ -14,7 +14,7 @@ export default function FloatingNavbar() {
     setMounted(true);
 
     const handleScroll = () => {
-      const sections = ["home", "about", "projects", "tech-stack"];
+      const sections = ["home", "about", "journey", "projects", "tech-stack"];
       // Look at scroll position offsetted by some viewport spacing for a natural transition
       const scrollPosition = window.scrollY + window.innerHeight / 3;
 
@@ -90,6 +90,21 @@ export default function FloatingNavbar() {
           >
             <User size={17} strokeWidth={1.75} />
             <span className="floating-nav__tooltip">About</span>
+          </a>
+
+          {/* Journey */}
+          <a
+            href="#journey"
+            onClick={(e) => {
+              e.preventDefault();
+              handleScrollTo("journey");
+              setActiveSection("journey");
+            }}
+            className={`floating-nav__btn ${activeSection === "journey" ? "active" : ""}`}
+            aria-label="Journey"
+          >
+            <Route size={17} strokeWidth={1.75} />
+            <span className="floating-nav__tooltip">Journey</span>
           </a>
 
           {/* Projects */}

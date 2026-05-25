@@ -3,13 +3,18 @@
 import { personalInfo } from "@/lib/data";
 import Image from "next/image";
 import { ShiningText } from "@/components/ui/shining-text";
-import { PenTool, Code, User } from "lucide-react";
+import { Smartphone, Code, BrainCircuit } from "lucide-react";
+import { SilkBackground } from "@/components/ui/silk-background";
+import { MinimalBackground } from "@/components/ui/minimal-background";
 
 export default function HeroSection() {
   return (
-    <section id="home" className="hero" data-cursor-guide="Welcome — this is where it all starts. Scroll down to explore.">
+    <section id="home" className="hero relative" data-cursor-guide="Welcome — this is where it all starts. Scroll down to explore.">
+      <SilkBackground className="absolute inset-0 w-full h-full z-0 pointer-events-none" />
+      <MinimalBackground className="absolute inset-0 w-full h-full z-0 pointer-events-none" />
+      
       {/* Left — Text content */}
-      <div className="hero__content">
+      <div className="hero__content relative z-10">
         {/* Greeting */}
         <p className="hero__greeting">Hello, I&apos;m</p>
 
@@ -48,7 +53,7 @@ export default function HeroSection() {
       </div>
 
       {/* Right — Photo Container */}
-      <div className="hero__image-container">
+      <div className="hero__image-container relative z-10">
         <div className="hero__image-wrapper">
           <div className="hero__image-inner">
             {/* Glowing background light */}
@@ -130,18 +135,18 @@ export default function HeroSection() {
 
       {/* Floating Badges - Moved to hero root to completely bypass any column clipping */}
       <div className="hero__badge hero__badge--1">
-        <div className="hero__badge-icon"><PenTool size={18} /></div>
-        <span>UI/UX Design</span>
+        <div className="hero__badge-icon"><Smartphone size={18} /></div>
+        <span>Android Development</span>
       </div>
       
       <div className="hero__badge hero__badge--2">
         <div className="hero__badge-icon"><Code size={18} /></div>
-        <span>Web Development</span>
+        <span>Full-Stack Web</span>
       </div>
       
-      <div className="hero__badge hero__badge--3">
-        <div className="hero__badge-icon"><User size={18} /></div>
-        <span>Web Consulting</span>
+      <div className="hero__badge hero__badge--3 z-20">
+        <div className="hero__badge-icon"><BrainCircuit size={18} /></div>
+        <span>AI & ML</span>
       </div>
     </section>
   );

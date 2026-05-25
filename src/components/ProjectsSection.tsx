@@ -10,14 +10,7 @@ type ProjectType = typeof projects[number];
 
 const CATEGORIES = ["All", "Mobile Apps", "Web Apps", "AI & Security"];
 
-const PROJECT_IMAGES: Record<string, string> = {
-  syncme: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=400&h=450&q=80",
-  quantisense: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=400&h=450&q=80",
-  screeni: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=400&h=450&q=80",
-  cyphex: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=400&h=450&q=80",
-  innovare: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=400&h=450&q=80",
-  "period-tracker": "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=400&h=450&q=80"
-};
+const PROJECT_IMAGES: Record<string, string> = {};
 
 export default function ProjectsSection() {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -51,7 +44,7 @@ export default function ProjectsSection() {
   const col3 = filteredProjects.filter((_, i) => i % 3 === 2);
 
   return (
-    <section id="projects" className="py-24 px-6 md:px-12 lg:px-24 bg-bg border-t border-border/50 relative overflow-hidden transition-colors duration-500" data-cursor-guide="A curated showcase of my best work. Click any project to explore.">
+    <section id="projects" className="py-12 md:py-24 px-6 md:px-12 lg:px-24 bg-bg border-t border-border/50 relative overflow-hidden transition-colors duration-500" data-cursor-guide="A curated showcase of my best work. Click any project to explore.">
       {/* Background ambient light */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-bg-alt/5 to-transparent pointer-events-none" />
 
@@ -185,88 +178,73 @@ export default function ProjectsSection() {
               {/* Expanded Card detail box */}
               <motion.div
                 layoutId={`project-card-${selectedProject.id}`}
-                className="relative bg-surface/95 dark:bg-zinc-900/95 w-full max-w-2xl rounded-3xl border border-border shadow-2xl p-8 md:p-12 overflow-hidden z-10 flex flex-col justify-between backdrop-blur-xl"
+                className="relative bg-surface dark:bg-zinc-900 w-full max-w-2xl rounded-2xl border border-border/50 shadow-2xl p-6 md:p-8 overflow-hidden z-10 flex flex-col justify-between max-h-[90vh] overflow-y-auto"
               >
-                {/* Dynamic Spotlight backdrop overlay in the modal */}
-                <div
-                  className="absolute -top-40 -right-40 w-96 h-96 rounded-full blur-3xl opacity-20 pointer-events-none"
-                  style={{ backgroundColor: selectedProject.color }}
-                />
+                <div className="flex flex-col gap-6 relative z-10">
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <span className="font-body text-[10px] font-bold tracking-widest text-[var(--color-accent-skin)] uppercase px-3 py-1 rounded-full border border-[var(--color-accent-skin)]/20 bg-[var(--color-accent-skin)]/10">
+                        {selectedProject.role}
+                      </span>
+                      <h3 className="font-display font-extrabold text-3xl md:text-4xl text-text mt-4">
+                        {selectedProject.title}
+                      </h3>
+                    </div>
+                    {/* Close trigger */}
+                    <button
+                      onClick={() => setSelectedProject(null)}
+                      className="w-8 h-8 rounded-full bg-bg-alt flex items-center justify-center text-text-secondary hover:text-text hover:bg-border transition-all duration-300 z-50 shrink-0"
+                      aria-label="Close details"
+                    >
+                      ✕
+                    </button>
+                  </div>
 
-                <div className="flex flex-col gap-6">
-                  {/* Close floating badge trigger */}
-                  <button
-                    onClick={() => setSelectedProject(null)}
-                    className="absolute top-6 right-6 w-10 h-10 rounded-full border border-border/50 bg-bg/80 flex items-center justify-center text-text hover:bg-text hover:text-bg transition-all duration-300 z-50 hover:scale-105"
-                    aria-label="Close details"
-                  >
-                    ✕
-                  </button>
-
-                  <div className="pt-2">
-                    <span className="font-body text-[10px] font-bold tracking-widest text-text-tertiary uppercase px-3 py-1 rounded-full border border-border/40 bg-bg/50">
-                      {selectedProject.role}
-                    </span>
-                    <h3 className="font-display font-extrabold text-3xl md:text-4xl text-text mt-4">
-                      {selectedProject.title}
-                    </h3>
+                  {/* Clean Image Container */}
+                  <div className="relative w-full h-[250px] md:h-[300px] rounded-xl overflow-hidden border border-border/50 shadow-sm bg-bg-alt/30 flex items-center justify-center p-4">
+                    <img
+                      src={PROJECT_IMAGES[selectedProject.id] || selectedProject.image}
+                      alt={selectedProject.title}
+                      className="max-w-full max-h-full object-contain drop-shadow-xl rounded-lg"
+                    />
                   </div>
 
                   {/* Tech stack row */}
-                  <div className="flex flex-wrap gap-1.5">
+                  <div className="flex flex-wrap gap-2">
                     {selectedProject.tech.map((t) => (
                       <span
                         key={t}
-                        className="font-body text-xs bg-bg border border-border/60 text-text-secondary px-3 py-1 rounded-full font-medium"
+                        className="font-body text-xs bg-bg-alt text-text px-3 py-1.5 rounded-md font-medium border border-border/30"
                       >
                         {t}
                       </span>
                     ))}
                   </div>
 
-                  {/* Ambient graphic segment */}
-                  <div
-                    className="relative w-full h-48 rounded-2xl overflow-hidden border border-border/30 flex items-center justify-center shadow-inner"
-                    style={{
-                      background: `linear-gradient(135deg, ${selectedProject.color}15, var(--color-bg-alt)30)`
-                    }}
-                  >
-                    <div
-                      className="absolute w-72 h-72 rounded-full blur-3xl opacity-30"
-                      style={{ backgroundColor: selectedProject.color }}
-                    />
-                    <img
-                      src={PROJECT_IMAGES[selectedProject.id] || selectedProject.image}
-                      alt={selectedProject.title}
-                      className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-overlay pointer-events-none"
-                    />
-                    <span className="relative z-10 font-display font-black text-6xl md:text-7xl opacity-20 tracking-widest uppercase text-text select-none">
-                      {selectedProject.title}
-                    </span>
-                  </div>
-
-                  <p className="font-body text-sm md:text-base text-text-secondary leading-relaxed mt-2">
+                  <p className="font-body text-base md:text-lg text-text-sec leading-relaxed">
                     {selectedProject.description}
                   </p>
                 </div>
 
-                <div className="mt-8 flex justify-end gap-4 border-t border-border/30 pt-6">
-                  <button
-                    onClick={() => setSelectedProject(null)}
-                    className="px-6 py-2.5 font-display text-xs md:text-sm font-semibold uppercase tracking-wider rounded-full border border-border text-text hover:bg-bg-alt/30 transition-all duration-200"
-                  >
-                    Close Details
-                  </button>
-                  {selectedProject.link && selectedProject.link !== "#" && (
+                <div className="mt-8 flex flex-col sm:flex-row justify-between items-center gap-4 border-t border-border/30 pt-6 relative z-10">
+                  <div className="flex w-full sm:w-auto gap-3">
                     <a
-                      href={selectedProject.link}
+                      href={selectedProject.link || "#"}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-6 py-2.5 font-display text-xs md:text-sm font-semibold uppercase tracking-wider rounded-full bg-text text-bg hover:bg-[var(--color-accent-skin)] hover:text-white transition-all duration-300 flex items-center gap-2"
+                      className="flex-1 sm:flex-none px-6 py-2.5 font-display text-sm font-semibold rounded-lg bg-text text-bg hover:opacity-90 transition-all duration-300 flex items-center justify-center gap-2"
                     >
-                      Launch App <span>↗</span>
+                      Live App <ArrowUpRight size={16} />
                     </a>
-                  )}
+                    <a
+                      href={(selectedProject as any).github || "#"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 sm:flex-none px-6 py-2.5 font-display text-sm font-semibold rounded-lg border border-border/50 bg-surface text-text hover:bg-bg-alt transition-all duration-300 flex items-center justify-center gap-2"
+                    >
+                      GitHub
+                    </a>
+                  </div>
                 </div>
               </motion.div>
             </div>
@@ -322,7 +300,7 @@ function ProjectPhotoCard({
       <img
         src={PROJECT_IMAGES[project.id] || project.image}
         alt={project.title}
-        className="w-full h-full object-cover transition-all duration-700 ease-out"
+        className="w-full h-full object-cover object-top transition-all duration-700 ease-out"
         style={{
           filter: isActive ? 'grayscale(0) brightness(1.02) contrast(1.02)' : 'grayscale(0.95) brightness(0.7) contrast(0.95)',
         }}

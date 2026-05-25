@@ -66,7 +66,11 @@ export default function AiAssistant() {
         };
 
         recognitionRef.current.onerror = (event: any) => {
-          console.error("Speech recognition error", event.error);
+          if (event.error === 'no-speech') {
+            console.log("No speech detected. Stopped listening.");
+          } else {
+            console.error("Speech recognition error", event.error);
+          }
           setIsListening(false);
         };
 
@@ -156,7 +160,7 @@ export default function AiAssistant() {
   };
 
   return (
-    <div className="fixed bottom-3 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center pointer-events-none w-full max-w-[340px] px-4">
+    <div className="fixed bottom-1 md:bottom-2 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center pointer-events-none w-full max-w-[420px] px-4">
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -164,11 +168,21 @@ export default function AiAssistant() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="w-full mb-3 pointer-events-auto flex flex-col justify-end max-h-[60vh] relative"
+            className="w-full mb-3 pointer-events-auto flex flex-col justify-end max-h-[60vh] relative group"
           >
+            {/* Floating Close Button */}
+            <button
+              type="button"
+              onClick={() => setIsOpen(false)}
+              className="absolute -top-3 -right-3 z-50 p-1.5 bg-surface dark:bg-zinc-800 border border-border shadow-md rounded-full text-text-sec hover:text-text hover:scale-110 transition-all opacity-0 group-hover:opacity-100 sm:opacity-100"
+              aria-label="Close Chat"
+            >
+              <X size={14} strokeWidth={2.5} />
+            </button>
+
             {/* Chat Area with Very Light Glass Background */}
             <div 
-              className="overflow-y-auto p-3 flex flex-col gap-4 mask-image-bottom no-scrollbar bg-white/10 backdrop-blur-sm border border-white/20 rounded-[32px] shadow-lg"
+              className="overflow-y-auto p-3 flex flex-col gap-4 mask-image-bottom no-scrollbar bg-surface/80 dark:bg-zinc-900/80 backdrop-blur-md border border-border/50 rounded-[32px] shadow-lg"
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
               <style dangerouslySetInnerHTML={{__html: `
@@ -182,10 +196,10 @@ export default function AiAssistant() {
                   className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
                 >
                   <div 
-                    className={`max-w-[90%] rounded-3xl px-4 py-2.5 text-[14px] leading-relaxed shadow-sm ${
+                    className={`max-w-[90%] rounded-3xl px-4 py-2.5 text-[14px] leading-relaxed transition-all duration-300 ${
                       msg.role === "user" 
-                        ? "bg-zinc-900 text-zinc-50 font-medium rounded-tr-md" 
-                        : "bg-white/95 backdrop-blur-md text-zinc-900 rounded-tl-md border border-zinc-200/60"
+                        ? "bg-gradient-to-tr from-[var(--color-accent-skin)] to-[var(--color-accent-skin)]/80 text-white border border-transparent shadow-md shadow-black/20 font-medium rounded-tr-md" 
+                        : "bg-surface dark:bg-zinc-800 text-text border border-border shadow-lg shadow-black/5 rounded-tl-md ring-1 ring-black/5"
                     }`}
                   >
                     {msg.content}
@@ -194,8 +208,8 @@ export default function AiAssistant() {
               ))}
               {isLoading && (
                 <div className="flex justify-start">
-                  <div className="bg-white/95 backdrop-blur-md border border-zinc-200/60 rounded-3xl rounded-tl-md px-4 py-3 shadow-sm">
-                    <Loader2 size={16} className="text-zinc-500 animate-spin" />
+                  <div className="bg-surface dark:bg-zinc-800 border border-border shadow-lg shadow-black/5 rounded-3xl rounded-tl-md px-4 py-3 ring-1 ring-black/5">
+                    <Loader2 size={16} className="text-text-sec animate-spin" />
                   </div>
                 </div>
               )}
@@ -205,38 +219,46 @@ export default function AiAssistant() {
         )}
       </AnimatePresence>
 
-      {/* Floating Input Bar - Warm Color (75% opacity) */}
+      {/* Floating Input Bar */}
       <motion.form 
         onSubmit={handleSend}
         layout
-        className={`pointer-events-auto flex items-center gap-1.5 p-1.5 rounded-full transition-all duration-300 w-full shadow-2xl border border-black/5 relative`}
-        style={{
-          backgroundColor: isOpen ? "rgba(255, 255, 255, 0.9)" : "color-mix(in srgb, var(--color-accent-skin) 75%, transparent)",
-          backdropFilter: "blur(16px)",
-        }}
+        className={`pointer-events-auto flex items-center gap-1 p-1 rounded-full transition-all duration-500 w-full relative ${
+          isOpen 
+            ? "bg-surface dark:bg-zinc-900 shadow-2xl border border-border ring-1 ring-black/5 backdrop-blur-xl" 
+            : "shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_8px_30px_color-mix(in_srgb,var(--color-accent-skin)_30%,transparent)]"
+        }`}
       >
+        {!isOpen && (
+          <div className="absolute inset-0 rounded-full overflow-hidden pointer-events-none">
+            <div className="absolute inset-[-100%] animate-[spin_4s_linear_infinite]" style={{
+              background: "conic-gradient(from 0deg, var(--color-accent-skin) 0%, var(--color-bg-alt) 33%, var(--color-text) 66%, var(--color-accent-skin) 100%)"
+            }} />
+            <div className="absolute inset-[1.5px] rounded-full bg-surface dark:bg-zinc-900 backdrop-blur-xl" />
+          </div>
+        )}
         <button
           type="button"
           onClick={toggleListening}
-          className={`p-2 rounded-full transition-all duration-300 flex-shrink-0 ${
+          className={`relative z-10 p-1.5 rounded-full transition-all duration-300 flex-shrink-0 ${
             isListening 
-              ? "bg-red-500 text-white animate-pulse" 
+              ? "bg-red-500 text-white animate-pulse shadow-md shadow-red-500/20" 
               : isOpen 
-                ? "text-[var(--color-accent-skin)] hover:bg-black/5" 
-                : "text-[#1a1a1a] hover:bg-black/10"
+                ? "text-[var(--color-accent-skin)] hover:bg-[var(--color-accent-skin)]/10" 
+                : "text-[var(--color-accent-skin)] hover:bg-[var(--color-accent-skin)]/15"
           }`}
         >
-          <Mic size={18} />
+          <Mic size={16} />
         </button>
 
-        <div className="flex-1 relative h-9 flex items-center cursor-text overflow-hidden" onClick={() => !isOpen && setIsOpen(true)}>
+        <div className="flex-1 relative z-10 h-8 flex items-center cursor-text overflow-hidden" onClick={() => !isOpen && setIsOpen(true)}>
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder={isOpen ? "Ask anything..." : ""}
-            className={`w-full bg-transparent text-[14px] focus:outline-none absolute inset-0 px-1 font-medium ${
-              isOpen ? "text-[#1a1a1a] placeholder-[#1a1a1a]/40" : "text-[#1a1a1a] placeholder-[#1a1a1a]/70"
+            className={`w-full bg-transparent text-[13px] focus:outline-none absolute inset-0 px-1 font-medium ${
+              isOpen ? "text-text placeholder:text-text-sec" : "text-transparent placeholder-transparent"
             }`}
           />
           {!isOpen && !input && (
@@ -247,7 +269,7 @@ export default function AiAssistant() {
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: -20, opacity: 0 }}
                 transition={{ duration: 0.3 }}
-                className="absolute inset-0 px-1 flex items-center text-[14px] font-medium text-[#1a1a1a]/80 pointer-events-none truncate"
+                className="absolute inset-0 px-1 flex items-center text-[13px] font-medium text-[var(--color-text)]/70 pointer-events-none truncate"
               >
                 {PLACEHOLDERS[placeholderIdx]}
               </motion.span>
@@ -255,32 +277,38 @@ export default function AiAssistant() {
           )}
         </div>
 
-        {isOpen && (
-          <button
-            type="button"
-            onClick={() => setIsOpen(false)}
-            className="p-2 rounded-full flex-shrink-0 text-[#1a1a1a]/50 hover:bg-black/5 hover:text-[#1a1a1a] transition-all"
-            aria-label="Close Chat"
-          >
-            <X size={16} strokeWidth={2.5} />
-          </button>
-        )}
 
-        <button
-          type="submit"
-          disabled={!input.trim() || isLoading}
-          className={`p-2.5 rounded-full flex-shrink-0 transition-all duration-300 ${
-            input.trim() && !isLoading
-              ? isOpen 
-                ? "bg-[var(--color-accent-skin)] text-[#1a1a1a] hover:scale-105 shadow-md"
-                : "bg-[#1a1a1a] text-white hover:scale-105 shadow-md"
-              : isOpen
-                ? "bg-black/5 text-[#1a1a1a]/30 cursor-not-allowed"
-                : "bg-black/10 text-[#1a1a1a]/50 cursor-not-allowed"
-          }`}
-        >
-          {isLoading && isOpen ? <Loader2 size={16} className="animate-spin" /> : <Send size={16} className={input.trim() ? "translate-x-0.5" : ""} />}
-        </button>
+
+        <AnimatePresence mode="wait">
+          {(input.trim() || isListening) ? (
+            <motion.button
+              key="send-btn"
+              type="submit"
+              disabled={isLoading || (!input.trim() && !isListening)}
+              initial={{ opacity: 0, scale: 0.8, filter: "blur(4px)" }}
+              animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+              exit={{ opacity: 0, scale: 0.8, filter: "blur(4px)" }}
+              transition={{ duration: 0.2 }}
+              className={`relative z-10 p-1.5 rounded-full flex-shrink-0 transition-all duration-300 ${
+                isOpen 
+                  ? "bg-[var(--color-accent-skin)] text-[var(--color-bg)] hover:scale-105 shadow-md"
+                  : "bg-[var(--color-text)] text-[var(--color-bg)] hover:scale-105 shadow-md"
+              } disabled:opacity-50`}
+            >
+              {isLoading ? <Loader2 size={14} className="animate-spin" /> : <Send size={14} className="ml-0.5" />}
+            </motion.button>
+          ) : (
+            <motion.div
+              key="sparkles-btn"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              className="relative z-10 p-1.5 flex-shrink-0 text-zinc-400"
+            >
+              <Sparkles size={14} className={isOpen ? "animate-pulse" : ""} />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.form>
     </div>
   );
