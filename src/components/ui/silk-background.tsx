@@ -7,7 +7,7 @@ interface SilkBackgroundProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export const SilkBackground = ({ className, ...props }: SilkBackgroundProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number>(0);
 
   useEffect(() => {
     const canvas = canvasRef.current;
