@@ -114,7 +114,7 @@ export default function MilestonesSection() {
           
           {/* Left Column: Sticky Title */}
           <div className="w-full lg:w-5/12 lg:sticky lg:top-32 lg:h-[calc(100vh-16rem)] flex flex-col justify-center">
-            <motion.div style={{ opacity: opacityFade }}>
+            <motion.div>
               <span className="inline-block py-1.5 px-4 rounded-full bg-[var(--color-accent-skin)]/10 text-[var(--color-accent-skin)] text-sm font-semibold tracking-wider uppercase mb-6 border border-[var(--color-accent-skin)]/20 shadow-sm">
                 Milestones
               </span>
