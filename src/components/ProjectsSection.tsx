@@ -91,7 +91,7 @@ export default function ProjectsSection() {
         </div>
 
         <div className="flex flex-col lg:flex-row items-stretch gap-12 lg:gap-16 w-full mt-8">
-          <div className="flex gap-3 md:gap-4 w-full max-w-md sm:max-w-lg md:max-w-xl lg:w-[480px] xl:w-[540px] mx-auto lg:mx-0 shrink-0 justify-start">
+          <div className="hidden sm:flex gap-3 md:gap-4 w-full max-w-md sm:max-w-lg md:max-w-xl lg:w-[480px] xl:w-[540px] mx-auto lg:mx-0 shrink-0 justify-start">
             
             {/* Column 1 */}
             <div className="flex-1 flex flex-col gap-3 md:gap-4">
@@ -121,8 +121,8 @@ export default function ProjectsSection() {
               ))}
             </div>
 
-            {/* Column 3 */}
-            <div className="flex-1 flex flex-col gap-3 md:gap-4 mt-[16px] sm:mt-[22px] md:mt-[26px] lg:mt-[32px]">
+            {/* Column 3 — hidden on small tablets, visible on md+ */}
+            <div className="hidden md:flex flex-1 flex-col gap-3 md:gap-4 mt-[16px] sm:mt-[22px] md:mt-[26px] lg:mt-[32px]">
               {col3.map((project) => (
                 <ProjectPhotoCard
                   key={project.id}

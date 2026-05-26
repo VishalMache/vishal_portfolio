@@ -59,7 +59,7 @@ export default function HeroSection() {
             {/* Glowing background light */}
             <div className="hero__image-glow" />
             <Image
-              src="/vishal-hero-enhanced.png"
+              src="/vishal-hero-final.png"
               alt="Vishal Mache — Developer & Designer"
               fill
               priority

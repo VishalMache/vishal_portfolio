@@ -160,7 +160,7 @@ export default function AiAssistant() {
   };
 
   return (
-    <div className="fixed bottom-1 md:bottom-2 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center pointer-events-none w-full max-w-[420px] px-4">
+    <div className="fixed bottom-6 sm:bottom-6 max-sm:bottom-[72px] right-4 sm:right-6 z-[999] flex flex-col items-end gap-3 w-full max-w-[420px] pointer-events-none">
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -222,7 +222,6 @@ export default function AiAssistant() {
       {/* Floating Input Bar */}
       <motion.form 
         onSubmit={handleSend}
-        layout
         className={`pointer-events-auto flex items-center gap-1 p-1 rounded-full transition-all duration-500 w-full relative ${
           isOpen 
             ? "bg-surface dark:bg-zinc-900 shadow-2xl border border-border ring-1 ring-black/5 backdrop-blur-xl" 

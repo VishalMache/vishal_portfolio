@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, lazy, Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import MultiOrbitSemiCircle from "./ui/multi-orbit-semi-circle";
-import TechMemoryGame from "./ui/TechMemoryGame";
+const TechMemoryGame = lazy(() => import("./ui/TechMemoryGame"));
 import { GitHubCalendar } from "./ui/git-hub-calendar";
 import { Gamepad2, X, Sparkles, Trophy } from "lucide-react";
 
@@ -142,7 +142,13 @@ export default function TechStackSection() {
               transition={{ duration: 0.45, ease: [0.4, 0, 0.2, 1] }}
               className="overflow-hidden"
             >
-              <TechMemoryGame onClose={() => setShowGame(false)} />
+              <Suspense fallback={
+                <div className="flex items-center justify-center py-16">
+                  <div className="text-text-secondary text-sm font-display animate-pulse">Loading game...</div>
+                </div>
+              }>
+                <TechMemoryGame onClose={() => setShowGame(false)} />
+              </Suspense>
             </motion.div>
           )}
         </AnimatePresence>
