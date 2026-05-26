@@ -10,15 +10,16 @@ export const personalInfo = {
   github: "https://github.com/VishalMache",
   linkedin: "https://linkedin.com/in/vishal-mache",
   bio: `Passionate about turning complex ideas into simple and meaningful digital experiences, I enjoy building intelligent applications that combine modern technology, scalability, and user-focused design to solve real-world problems.`,
-  aboutSummary: `I am an Android and Full-Stack Developer pursuing a B.Tech in Computer Science and Engineering with a focus on AI and Ml . I have hands-on experience in developing production ready mobile applications and web applications.My projects emphasize innovative solution in AI,cybersecurity and user engagement.I excel in collaborating on cutting edge technology projects development,with a paasion for delivering seamless user experiences.`,
+  aboutSummary: `I am an Android and Full-Stack Developer pursuing a B.Tech in Computer Science and Engineering with a focus on AI and Ml . I have hands-on experience in developing production ready mobile applications and web applications.My projects emphasize innovative solution in AI,cybersecurity and user engagement.I excel in collaborating on cutting edge technology projects development,with a passion for delivering seamless user experiences.`,
 };
 
 export const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Journey", href: "#journey" },
-  { label: "Projects", href: "#projects" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/#home" },
+  { label: "About", href: "/#about" },
+  { label: "Journey", href: "/#journey" },
+  { label: "Projects", href: "/#projects" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export const skills = {
@@ -28,12 +29,26 @@ export const skills = {
   tools: ["Git", "GitHub", "VS Code", "Android Studio"],
 };
 
-export const education = {
-  degree: "B.Tech in Computer Science & Engineering (AI & ML)",
-  university: "Pimpri Chinchwad University",
-  period: "2024 — 2028",
-  cgpa: "7.5 / 10",
-};
+export const education = [
+  {
+    degree: "B.Tech in Computer Science & Engineering (AI & ML)",
+    university: "Pimpri Chinchwad University",
+    period: "2024 — 2028",
+    score: "CGPA: 7.5 / 10",
+  },
+  {
+    degree: "Class XII (HSC)",
+    university: "Balasaheb Bharde Jr. College",
+    period: "2023 - 2024",
+    score: "76.17 %",
+  },
+  {
+    degree: "Class X (SSC)",
+    university: "Jawahar Madhyamik Vidyalaya",
+    period: "2021 - 2022",
+    score: "91.00 %",
+  }
+];
 
 export const passions = [
   {
@@ -82,6 +97,19 @@ export const services = [
 ];
 
 export const projects = [
+  {
+    id: "ctms",
+    title: "CTMS",
+    role: "Full-Stack Developer",
+    description: "Central Training & Placement Management System. Comprehensive training and placement management platform for tracking student data, placement drives, and training programs. Features role-based access, real-time dashboards, and automated reporting.",
+    tech: ["Python", "Flask", "Database", "REST API"],
+    image: "/projects/ctms_interface.jpeg",
+    color: "#3B82F6",
+    tape: ["top-left", "top-right"],
+    tapeColor: "#3B82F6",
+    link: "#",
+    github: "",
+  },
   {
     id: "syncme",
     title: "SyncMe",

@@ -2,18 +2,24 @@
 
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
-import { Home, User, Cpu, LayoutGrid, Sun, Moon, Route } from "lucide-react";
+import { useRouter, usePathname } from "next/navigation";
+import { Home, User, Cpu, LayoutGrid, Sun, Moon, Route, Image as ImageIcon } from "lucide-react";
 
 export default function FloatingNavbar() {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
   const [activeSection, setActiveSection] = useState("home");
 
+  const router = useRouter();
+  const pathname = usePathname();
+
   // Handle mounting on client to prevent server/client mismatch
   useEffect(() => {
     setMounted(true);
 
     const handleScroll = () => {
+      if (pathname !== "/") return; // Only track sections on home page
+      
       const sections = ["home", "about", "journey", "projects", "tech-stack"];
       // Look at scroll position offsetted by some viewport spacing for a natural transition
       const scrollPosition = window.scrollY + window.innerHeight / 3;
@@ -35,13 +41,17 @@ export default function FloatingNavbar() {
     // Trigger once on mount
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [pathname]);
 
   if (!mounted) {
     return null; // Render nothing on server
   }
 
   const handleScrollTo = (id: string) => {
+    if (pathname !== "/") {
+      router.push("/#" + id);
+      return;
+    }
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -60,17 +70,21 @@ export default function FloatingNavbar() {
       {/* Main Container of Navigation Items */}
       <div className="floating-nav__container">
         
-        {/* Section 1: Core Navigation (Home, About, Stacks, Projects) */}
+        {/* Section 1: Core Navigation (Home, About, Journey, Projects, Gallery, Stacks) */}
         <div className="floating-nav__item-group">
           {/* Home */}
           <a
-            href="#home"
+            href="/#home"
             onClick={(e) => {
               e.preventDefault();
-              window.scrollTo({ top: 0, behavior: "smooth" });
-              setActiveSection("home");
+              if (pathname !== "/") {
+                router.push("/#home");
+              } else {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+                setActiveSection("home");
+              }
             }}
-            className={`floating-nav__btn ${activeSection === "home" ? "active" : ""}`}
+            className={`floating-nav__btn ${activeSection === "home" && pathname === "/" ? "active" : ""}`}
             aria-label="Home"
           >
             <Home size={17} strokeWidth={1.75} />
@@ -79,13 +93,13 @@ export default function FloatingNavbar() {
 
           {/* About Me */}
           <a
-            href="#about"
+            href="/#about"
             onClick={(e) => {
               e.preventDefault();
               handleScrollTo("about");
-              setActiveSection("about");
+              if (pathname === "/") setActiveSection("about");
             }}
-            className={`floating-nav__btn ${activeSection === "about" ? "active" : ""}`}
+            className={`floating-nav__btn ${activeSection === "about" && pathname === "/" ? "active" : ""}`}
             aria-label="About Me"
           >
             <User size={17} strokeWidth={1.75} />
@@ -94,13 +108,13 @@ export default function FloatingNavbar() {
 
           {/* Journey */}
           <a
-            href="#journey"
+            href="/#journey"
             onClick={(e) => {
               e.preventDefault();
               handleScrollTo("journey");
-              setActiveSection("journey");
+              if (pathname === "/") setActiveSection("journey");
             }}
-            className={`floating-nav__btn ${activeSection === "journey" ? "active" : ""}`}
+            className={`floating-nav__btn ${activeSection === "journey" && pathname === "/" ? "active" : ""}`}
             aria-label="Journey"
           >
             <Route size={17} strokeWidth={1.75} />
@@ -109,28 +123,42 @@ export default function FloatingNavbar() {
 
           {/* Projects */}
           <a
-            href="#projects"
+            href="/#projects"
             onClick={(e) => {
               e.preventDefault();
               handleScrollTo("projects");
-              setActiveSection("projects");
+              if (pathname === "/") setActiveSection("projects");
             }}
-            className={`floating-nav__btn ${activeSection === "projects" ? "active" : ""}`}
+            className={`floating-nav__btn ${activeSection === "projects" && pathname === "/" ? "active" : ""}`}
             aria-label="Projects"
           >
             <LayoutGrid size={17} strokeWidth={1.75} />
             <span className="floating-nav__tooltip">Projects</span>
           </a>
 
+          {/* Gallery */}
+          <a
+            href="/gallery"
+            onClick={(e) => {
+              e.preventDefault();
+              router.push("/gallery");
+            }}
+            className={`floating-nav__btn ${pathname === "/gallery" ? "active" : ""}`}
+            aria-label="Gallery"
+          >
+            <ImageIcon size={17} strokeWidth={1.75} />
+            <span className="floating-nav__tooltip">Gallery</span>
+          </a>
+
           {/* Stacks */}
           <a
-            href="#tech-stack"
+            href="/#tech-stack"
             onClick={(e) => {
               e.preventDefault();
               handleScrollTo("tech-stack");
-              setActiveSection("tech-stack");
+              if (pathname === "/") setActiveSection("tech-stack");
             }}
-            className={`floating-nav__btn ${activeSection === "tech-stack" ? "active" : ""}`}
+            className={`floating-nav__btn ${activeSection === "tech-stack" && pathname === "/" ? "active" : ""}`}
             aria-label="Tech Stack"
           >
             <Cpu size={17} strokeWidth={1.75} />

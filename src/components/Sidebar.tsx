@@ -1,19 +1,31 @@
 "use client";
 
+import { useRouter, usePathname } from "next/navigation";
 import { personalInfo } from "@/lib/data";
 import ThemeToggle from "./ThemeToggle";
 import { MenuContainer, MenuItem } from "./ui/fluid-menu";
-import { Menu as MenuIcon, X, Home, User, Users, Mail } from "lucide-react";
+import { Menu as MenuIcon, X, Home, User, Users, Mail, Image as ImageIcon } from "lucide-react";
 
 export default function Sidebar({
   onMenuToggle,
 }: {
   onMenuToggle: () => void;
 }) {
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleNav = (hash: string) => {
+    if (pathname !== '/') {
+      router.push('/#' + hash);
+    } else {
+      window.location.hash = hash;
+    }
+  };
+
   return (
     <aside className="sidebar" aria-label="Sidebar navigation">
       {/* Logo */}
-      <a href="#home" className="sidebar__logo" aria-label="Home">
+      <a href="/#home" className="sidebar__logo" aria-label="Home">
         VM
       </a>
 
@@ -39,15 +51,19 @@ export default function Sidebar({
           />
           <MenuItem 
             icon={<Home size={22} strokeWidth={1.5} />} 
-            onClick={() => window.location.hash = "home"}
+            onClick={() => handleNav("home")}
           />
           <MenuItem 
             icon={<User size={22} strokeWidth={1.5} />} 
-            onClick={() => window.location.hash = "about"}
+            onClick={() => handleNav("about")}
+          />
+          <MenuItem 
+            icon={<ImageIcon size={22} strokeWidth={1.5} />} 
+            onClick={() => router.push("/gallery")}
           />
           <MenuItem 
             icon={<Users size={22} strokeWidth={1.5} />} 
-            onClick={() => window.location.href = "/team"}
+            onClick={() => router.push("/team")}
           />
           {/* Theme Toggle integrated directly inside the fluid stack! */}
           <ThemeToggle />

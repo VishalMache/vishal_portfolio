@@ -36,12 +36,20 @@ export default function AboutSection() {
           <h3 className="text-sm font-bold tracking-[0.2em] text-[var(--color-accent-skin)] uppercase mb-8 pb-4 border-b border-black/10 dark:border-white/10">
             Education
           </h3>
-          <div className="pl-0 md:pl-4">
-             <h4 className="text-3xl font-bold mb-3">{education.degree}</h4>
-             <p className="text-xl text-text-sec mb-6">{education.university}</p>
-             <p className="text-text-tertiary font-medium uppercase tracking-widest text-sm">
-                {education.period} <span className="mx-4 opacity-30">|</span> CGPA: {education.cgpa}
-             </p>
+          <div className="pl-0 space-y-6">
+             {education.map((edu, idx) => (
+               <div key={idx} className="flex flex-col">
+                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1 sm:gap-4">
+                   <h4 className="text-lg font-bold text-text leading-tight">
+                     {edu.degree} | {edu.score}
+                   </h4>
+                   <span className="text-base text-text-sec whitespace-nowrap">
+                     {edu.period}
+                   </span>
+                 </div>
+                 <p className="text-base text-text-sec mt-1">{edu.university}</p>
+               </div>
+             ))}
           </div>
         </motion.div>
 
