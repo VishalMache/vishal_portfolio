@@ -182,7 +182,7 @@ export default function MultiOrbitSemiCircle({
       ? Math.max(24, containerWidth * 0.06)
       : Math.max(28, containerWidth * 0.06);
 
-  const baseWidth = Math.max(240, Math.min(containerWidth - iconSize - 64, 680));
+  const baseWidth = Math.max(190, Math.min(containerWidth - iconSize - 48, 680));
   const centerX = baseWidth / 2;
   const centerY = baseWidth * 0.5;
 

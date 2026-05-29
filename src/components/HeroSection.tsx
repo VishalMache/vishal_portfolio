@@ -4,14 +4,10 @@ import { personalInfo } from "@/lib/data";
 import Image from "next/image";
 import { ShiningText } from "@/components/ui/shining-text";
 import { Smartphone, Code, BrainCircuit } from "lucide-react";
-import { SilkBackground } from "@/components/ui/silk-background";
-import { MinimalBackground } from "@/components/ui/minimal-background";
 
 export default function HeroSection() {
   return (
     <section id="home" className="hero relative" data-cursor-guide="Welcome — this is where it all starts. Scroll down to explore.">
-      <SilkBackground className="absolute inset-0 w-full h-full z-0 pointer-events-none" />
-      <MinimalBackground className="absolute inset-0 w-full h-full z-0 pointer-events-none" />
       
       {/* Left — Text content */}
       <div className="hero__content relative z-10">
@@ -59,7 +55,7 @@ export default function HeroSection() {
             {/* Glowing background light */}
             <div className="hero__image-glow" />
             <Image
-              src="/vishal-hero-final.png"
+              src="/vishal-hero-enhanced.png"
               alt="Vishal Mache — Developer & Designer"
               fill
               priority

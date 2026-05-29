@@ -8,6 +8,8 @@ import ProjectsSection from "@/components/ProjectsSection";
 import Preloader from "@/components/Preloader";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import AiAssistant from "@/components/AiAssistant";
+import { InteractiveAurora } from "@/components/ui/interactive-aurora";
+import { InteractiveMagneticGrid } from "@/components/ui/interactive-magnetic-grid";
 
 import MilestonesSection from "@/components/MilestonesSection";
 
@@ -19,6 +21,10 @@ export default function Home() {
     <div className="app-layout">
       <CustomCursor />
       <Preloader />
+      
+      {/* Global Interactive Backgrounds */}
+      <InteractiveAurora />
+      <InteractiveMagneticGrid />
 
       {/* Floating minimalist branding logo */}
       <a

@@ -160,14 +160,15 @@ export default function AiAssistant() {
   };
 
   return (
-    <div className="fixed bottom-6 sm:bottom-6 max-sm:bottom-[72px] right-4 sm:right-6 z-[999] flex flex-col items-end gap-3 w-full max-w-[420px] pointer-events-none">
+    <div className="fixed bottom-6 sm:bottom-6 max-sm:bottom-[72px] right-4 sm:right-6 z-[999] flex flex-col items-end gap-3 w-full max-w-[420px] pointer-events-none ai-assistant-container">
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+            initial={{ opacity: 0, y: 40, scale: 0.85, rotateX: 15, filter: "blur(12px)" }}
+            animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0, filter: "blur(0px)" }}
+            exit={{ opacity: 0, y: 20, scale: 0.9, rotateX: 10, filter: "blur(8px)" }}
+            transition={{ type: "spring", damping: 22, stiffness: 250, mass: 0.8 }}
+            style={{ transformOrigin: "bottom right", perspective: "1000px" }}
             className="w-full mb-3 pointer-events-auto flex flex-col justify-end max-h-[60vh] relative group"
           >
             {/* Floating Close Button */}

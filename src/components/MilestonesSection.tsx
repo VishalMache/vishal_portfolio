@@ -66,7 +66,7 @@ const MilestoneCard = ({ milestone, index }: { milestone: any; index: number }) 
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: "-20%" }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className="relative flex flex-col md:flex-row gap-5 md:gap-8 items-start group py-6"
+      className="relative flex flex-row gap-5 md:gap-8 items-start group py-3 md:py-6"
     >
       {/* Floating Glowing Icon Orb */}
       <div className="relative shrink-0">
@@ -136,7 +136,7 @@ export default function MilestonesSection() {
           </div>
 
           {/* Right Column: Scrolling Cards */}
-          <div className="w-full lg:w-6/12 xl:w-5/12 flex flex-col space-y-10 md:space-y-16 lg:pt-32 lg:pb-16">
+          <div className="w-full lg:w-6/12 xl:w-5/12 flex flex-col space-y-6 md:space-y-16 lg:pt-32 lg:pb-16">
             {milestones.map((milestone, index) => (
               <MilestoneCard key={milestone.id} milestone={milestone} index={index} />
             ))}

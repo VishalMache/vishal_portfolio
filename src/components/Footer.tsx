@@ -71,7 +71,7 @@ export default function Footer() {
               <div className="mt-auto relative z-10 flex flex-col space-y-4">
                 <a 
                   href="mailto:mr.vishalmache@gmail.com"
-                  className="inline-flex items-center gap-3 text-sm font-medium text-text-tertiary hover:text-[var(--color-accent-skin)] transition-colors break-all"
+                  className="inline-flex items-center gap-3 text-[13px] sm:text-sm font-medium text-text-tertiary hover:text-[var(--color-accent-skin)] transition-colors break-words"
                 >
                   <div className="w-8 h-8 rounded-full bg-border/40 dark:bg-black/20 flex items-center justify-center shrink-0">
                     <Mail size={14} className="text-text-sec" />

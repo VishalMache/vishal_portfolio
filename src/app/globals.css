@@ -2627,3 +2627,53 @@ button {
 .animate-perspective-blur-in {
   animation: perspective-blur-in 0.8s ease-out forwards;
 }
+
+/* ========================================
+   FLAWLESS MOBILE RESPONSIVENESS OVERRIDES
+   ======================================== */
+@media (max-width: 768px) {
+  /* 1. Force Restore Default Cursor on Touch Screen Devices */
+  body, a, button, [role='button'], input, select, textarea, [data-cursor] {
+    cursor: auto !important;
+  }
+  
+  /* Hide custom cursor element to prevent lag or double ring issues */
+  .fixed.top-0.left-0.rounded-full.pointer-events-none {
+    display: none !important;
+  }
+
+  /* 2. Hide Hero Floating Social strip inside image to make it clean & elegant */
+  .hero__socials-floating {
+    display: none !important;
+  }
+
+  /* 3. Hide Sticky Hover Tooltips on Bottom Navigation Capsule */
+  .floating-nav__tooltip {
+    display: none !important;
+  }
+
+  /* 4. Symmetrical Layout for AI Assistant Drawer Chat Box on Mobile */
+  .ai-assistant-container {
+    right: 16px !important;
+    left: 16px !important;
+    width: calc(100% - 32px) !important;
+    max-width: none !important;
+  }
+
+  /* 5. Custom Touch Scrolling optimizations */
+  .no-scrollbar {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* 6. Position mobile Hero Image to perfectly center the face */
+  .hero__image {
+    object-position: center 15% !important; /* Sweet-spot centering for the entire head */
+  }
+
+  /* 7. Optimize Hero Image height on mobile to ensure a beautiful vertical container */
+  .hero__image-container {
+    height: 100vw !important;
+    min-height: 380px !important;
+    max-height: 480px !important;
+  }
+}
