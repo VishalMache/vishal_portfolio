@@ -21,7 +21,7 @@ export default function Footer() {
               <span className="font-display font-bold text-xl text-text">{personalInfo.name}</span>
             </div>
             <div className="space-y-3">
-              <p className="text-sm font-medium text-text-sec">Android & Full-Stack Developer</p>
+              <p className="text-sm font-medium text-text-sec">Mobile & Full-Stack Developer</p>
             </div>
           </div>
 

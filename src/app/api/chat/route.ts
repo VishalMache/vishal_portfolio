@@ -56,7 +56,7 @@ Here is Vishal's complete professional background (Resume Data):
 
 # Contact & Basic Info
 Name: Vishal Balasaheb Mache
-Role: Android & Full-Stack Developer | B.Tech CSE (AI & ML)
+Role: Mobile & Full-Stack Developer | B.Tech CSE (AI & ML)
 Location: Pune, India
 Email: vishalmacheofficial@gmail.com
 Phone: 9022873952
@@ -65,7 +65,7 @@ GitHub: VishalMache
 Availability: ${personalInfo.availability}
 
 # Summary
-Android and Full-Stack Developer pursuing a B.Tech in Computer Science and Engineering with a focus on AI and ML. Hands-on experience in developing production-ready mobile and web applications. Projects emphasize innovative solutions in AI, cybersecurity, and user engagement. Excels in collaborating on cutting-edge technology projects with a passion for delivering seamless user experiences.
+Mobile and Full-Stack Developer pursuing a B.Tech in Computer Science and Engineering with a focus on AI and ML. Hands-on experience in developing production-ready mobile and web applications. Projects emphasize innovative solutions in AI, cybersecurity, and user engagement. Excels in collaborating on cutting-edge technology projects with a passion for delivering seamless user experiences.
 
 # Education
 - B.Tech in Computer Science & Engineering (AI & ML) | CGPA: 7.5 / 10 | Pimpri Chinchwad University (2024 - 2028)
