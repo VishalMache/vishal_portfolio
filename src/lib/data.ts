@@ -114,9 +114,15 @@ export const projects = [
     id: "syncme",
     title: "SyncMe",
     role: "Android Developer",
-    description: "Built a mobile application for real-time location sharing and group tracking for outdoor coordination. Integrated Supabase authentication, PostgreSQL, and live synchronization for real-time updates across devices. Developed SOS emergency alerts and in-app communication features to improve group safety and connectivity.",
+    description: "SyncMe is a real-time location-sharing and group coordination app built with Flutter. It is designed for friends, families, and teams (like trekkers, travelers, or event organizers) to stay connected during trips or events. SyncMe allows users to create groups, initiate active \"rooms\" (events), and share their live location with room members.",
     tech: ["Flutter", "Supabase", "PostgreSQL"],
-    image: "/projects/syncme.jpg",
+    image: "/projects/syncme1.jpeg",
+    images: [
+      "/projects/syncme1.jpeg",
+      "/projects/syncme2.jpeg",
+      "/projects/syncme3.jpeg",
+      "/projects/syncme4.jpeg"
+    ],
     color: "#FB923C", // Orange matching the UI
     tape: ["top-left", "top-right"],
     tapeColor: "#FB923C",
@@ -140,9 +146,14 @@ export const projects = [
     id: "screeni",
     title: "Screenique",
     role: "Mobile Developer",
-    description: "Created a cinematic discovery platform featuring personalized recommendation workflows and community interaction features.",
+    description: "Screenique is a premium, cinematic Flutter application designed for movie and series enthusiasts. It goes beyond simple tracking by offering a vintage, editorial aesthetic complete with film grain and burn effects. Discover new movies, curate your watchlist, forge custom iconic movie dialogues, and experience a unique, tactile movie-tracking journey.",
     tech: ["Flutter", "TMDB API", "Firestore"],
-    image: "/projects/screenique.jpg",
+    image: "/projects/screenique1.jpeg",
+    images: [
+      "/projects/screenique1.jpeg",
+      "/projects/screenique2.jpeg",
+      "/projects/screenique3.jpeg"
+    ],
     color: "#6366F1",
     tape: ["top-left", "top-right"],
     tapeColor: "#6366F1",

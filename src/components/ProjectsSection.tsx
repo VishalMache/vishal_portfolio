@@ -201,13 +201,27 @@ export default function ProjectsSection() {
                   </div>
 
                   {/* Clean Image Container */}
-                  <div className="relative w-full h-[250px] md:h-[300px] rounded-xl overflow-hidden border border-border/50 shadow-sm bg-bg-alt/30 flex items-center justify-center p-4">
-                    <img
-                      src={PROJECT_IMAGES[selectedProject.id] || selectedProject.image}
-                      alt={selectedProject.title}
-                      className="max-w-full max-h-full object-contain drop-shadow-xl rounded-lg"
-                    />
-                  </div>
+                  {"images" in selectedProject && Array.isArray((selectedProject as any).images) ? (
+                    <div className="relative w-full h-[250px] md:h-[300px] flex gap-4 overflow-x-auto snap-x snap-mandatory rounded-xl border border-border/50 shadow-sm bg-bg-alt/30 p-4 no-scrollbar">
+                      {(selectedProject as any).images.map((img: string, idx: number) => (
+                        <div key={idx} className="shrink-0 w-[80%] sm:w-[60%] md:w-auto md:h-full flex items-center justify-center snap-center">
+                          <img
+                            src={img}
+                            alt={`${selectedProject.title} screenshot ${idx + 1}`}
+                            className="max-w-full max-h-full object-contain drop-shadow-xl rounded-lg"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="relative w-full h-[250px] md:h-[300px] rounded-xl overflow-hidden border border-border/50 shadow-sm bg-bg-alt/30 flex items-center justify-center p-4">
+                      <img
+                        src={PROJECT_IMAGES[selectedProject.id] || selectedProject.image}
+                        alt={selectedProject.title}
+                        className="max-w-full max-h-full object-contain drop-shadow-xl rounded-lg"
+                      />
+                    </div>
+                  )}
 
                   {/* Tech stack row */}
                   <div className="flex flex-wrap gap-2">
