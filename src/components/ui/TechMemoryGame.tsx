@@ -39,8 +39,8 @@ const TECH_ICONS = [
 type Difficulty = "easy" | "medium" | "hard";
 
 const DIFFICULTY_CONFIG: Record<Difficulty, { pairs: number; cols: string }> = {
-  easy:   { pairs: 4,  cols: "grid-cols-4" },
-  medium: { pairs: 6,  cols: "grid-cols-4" },
+  easy:   { pairs: 4,  cols: "grid-cols-2 sm:grid-cols-4" },
+  medium: { pairs: 6,  cols: "grid-cols-3 sm:grid-cols-4" },
   hard:   { pairs: 8,  cols: "grid-cols-4" },
 };
 

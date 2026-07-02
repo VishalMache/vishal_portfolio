@@ -2632,6 +2632,12 @@ button {
    FLAWLESS MOBILE RESPONSIVENESS OVERRIDES
    ======================================== */
 @media (max-width: 768px) {
+  /* 0. Prevent horizontal overflow at the root level */
+  html, body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+  }
+
   /* 1. Force Restore Default Cursor on Touch Screen Devices */
   body, a, button, [role='button'], input, select, textarea, [data-cursor] {
     cursor: auto !important;
@@ -2670,10 +2676,126 @@ button {
     object-position: center 15% !important; /* Sweet-spot centering for the entire head */
   }
 
-  /* 7. Optimize Hero Image height on mobile to ensure a beautiful vertical container */
+  /* 7. Optimize Hero Image dimensions on mobile for a beautiful card layout */
   .hero__image-container {
-    height: 100vw !important;
-    min-height: 380px !important;
-    max-height: 480px !important;
+    height: 85vw !important;
+    min-height: 320px !important;
+    max-height: 460px !important;
+  }
+
+  /* 8. Fix hero image inner to have symmetric safe-area padding (not the asymmetric desktop inset) */
+  .hero__image-inner {
+    inset: 12px !important;
+    border-radius: 16px !important;
+  }
+
+  /* 9. Tame section padding to prevent overflow on narrow screens */
+  .tech-section {
+    padding-left: var(--space-lg) !important;
+    padding-right: var(--space-lg) !important;
+  }
+
+  .hero__content {
+    padding: var(--space-lg) var(--space-lg) var(--space-xl) !important;
+  }
+
+  /* 10. Cap large headings for mobile readability */
+  .section-title {
+    font-size: clamp(1.8rem, 7vw, 2.5rem) !important;
+    word-break: break-word;
+  }
+
+  /* 11. IDE frame mobile optimizations */
+  .ide-body {
+    min-height: 320px !important;
+  }
+
+  .ide-preview {
+    min-height: 280px !important;
+  }
+
+  /* 12. Location badge repositioning on mobile */
+  .location-badge {
+    left: 50% !important;
+    top: auto !important;
+    bottom: -20px !important;
+    transform: translateX(-50%) !important;
+    font-size: 0.7rem !important;
+    padding: 8px 10px 8px 16px !important;
+    gap: 12px !important;
+  }
+
+  .location-badge__icon {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  /* 13. Ensure all container children don't overflow viewport */
+  .tech-container,
+  .max-w-6xl,
+  .max-w-7xl,
+  .max-w-4xl {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
   }
 }
+
+/* ========================================
+   EXTRA SMALL SCREEN ADJUSTMENTS (≤480px)
+   ======================================== */
+@media (max-width: 480px) {
+  /* Tighter padding for very small phones */
+  .hero__content {
+    padding: var(--space-md) var(--space-md) var(--space-lg) !important;
+  }
+
+  .hero__name {
+    font-size: 2rem !important;
+    letter-spacing: -0.5px !important;
+  }
+
+  .hero__greeting {
+    font-size: 1rem !important;
+  }
+
+  .hero__tagline {
+    font-size: 0.75rem !important;
+    letter-spacing: 1.5px !important;
+  }
+
+  .hero__description {
+    font-size: 0.85rem !important;
+  }
+
+  .hero__image-container {
+    height: 80vw !important;
+    min-height: 280px !important;
+    max-height: 400px !important;
+  }
+
+  /* Floating nav items even smaller */
+  .floating-nav__btn {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .floating-nav__container {
+    gap: 4px !important;
+    padding: 3px 4px !important;
+  }
+
+  .floating-nav__item-group {
+    gap: 4px !important;
+  }
+
+  /* Tech section & IDE tighter */
+  .tech-section {
+    padding-left: var(--space-md) !important;
+    padding-right: var(--space-md) !important;
+  }
+
+  .ide-body {
+    min-height: 280px !important;
+  }
+}
+
