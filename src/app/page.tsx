@@ -18,7 +18,7 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="app-layout">
+    <main className="min-h-screen bg-[var(--color-bg)] text-text relative w-full overflow-x-hidden">
       <CustomCursor />
       <Preloader />
       
@@ -42,20 +42,17 @@ export default function Home() {
       {/* Premium floating capsule navbar */}
       <FloatingNavbar />
 
-      {/* Main content */}
-      <main className="main-content">
-        <HeroSection />
-        <AboutSection />
-        <MilestonesSection />
-        <ProjectsSection />
-        <TechStackSection />
-        <ContactSection />
-        <Footer />
-      </main>
+      <HeroSection />
+      <AboutSection />
+      <MilestonesSection />
+      <ProjectsSection />
+      <TechStackSection />
+      <ContactSection />
+      <Footer />
 
       {/* AI Assistant Chat Bar */}
       <AiAssistant />
-    </div>
+    </main>
   );
 }
 
