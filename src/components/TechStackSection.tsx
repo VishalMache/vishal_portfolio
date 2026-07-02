@@ -126,7 +126,7 @@ export default function TechStackSection() {
                </div>
                <div>
                  <h4 className="font-display font-semibold text-text text-sm mb-1">Challenge Unlocked</h4>
-                 <p className="text-text-sec text-xs leading-relaxed">
+                 <p className="text-text-secondary text-xs leading-relaxed">
                    Beat the <span className="font-semibold text-text">Hard Level</span> to secure your spot on the leaderboard. Finish the year at rank #1 to receive a special gift from Vishal!
                  </p>
                </div>

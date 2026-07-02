@@ -280,7 +280,7 @@ export default function TechMemoryGame({ onClose }: TechMemoryGameProps) {
                     "px-3 py-1.5 rounded-full font-display text-[10px] md:text-xs font-semibold uppercase tracking-wider transition-all duration-200 border border-zinc-400/40 dark:border-zinc-800/60",
                     difficulty === d
                       ? "bg-text text-bg border-text shadow-sm"
-                      : "text-text-secondary hover:text-text hover:border-zinc-400 dark:hover:border-zinc-700"
+                      : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:text-zinc-100 hover:border-zinc-400 dark:hover:border-zinc-700"
                   )}
                 >
                   {d}
@@ -289,10 +289,10 @@ export default function TechMemoryGame({ onClose }: TechMemoryGameProps) {
             </div>
 
             {/* Flat text counters */}
-            <div className="flex items-center gap-4 text-xs font-display text-text-secondary">
-              <span>Moves: <strong className="text-text font-bold tabular-nums">{moves}</strong></span>
-              <span>Time: <strong className="text-text font-bold tabular-nums">{formatTime(timer)}</strong></span>
-              <span>Matched: <strong className="text-text font-bold tabular-nums">{matched.size / 2}/{totalPairs}</strong></span>
+            <div className="flex items-center gap-4 text-xs font-display text-zinc-600 dark:text-zinc-400">
+              <span>Moves: <strong className="text-zinc-900 dark:text-zinc-100 font-bold tabular-nums">{moves}</strong></span>
+              <span>Time: <strong className="text-zinc-900 dark:text-zinc-100 font-bold tabular-nums">{formatTime(timer)}</strong></span>
+              <span>Matched: <strong className="text-zinc-900 dark:text-zinc-100 font-bold tabular-nums">{matched.size / 2}/{totalPairs}</strong></span>
             </div>
           </div>
 
@@ -340,7 +340,7 @@ export default function TechMemoryGame({ onClose }: TechMemoryGameProps) {
                       }}
                     >
                       <img src={card.icon} alt={card.name} className="w-8 h-8 object-contain" />
-                      <span className="font-display text-[8px] md:text-[9px] font-bold uppercase tracking-wider text-text-secondary truncate max-w-full px-1">
+                      <span className="font-display text-[8px] md:text-[9px] font-bold uppercase tracking-wider text-zinc-600 dark:text-zinc-400 truncate max-w-full px-1">
                         {card.name}
                       </span>
                     </div>
@@ -354,13 +354,13 @@ export default function TechMemoryGame({ onClose }: TechMemoryGameProps) {
           <div className="flex gap-2.5 mt-6">
             <button
               onClick={() => resetGame()}
-              className="px-4 py-2 rounded-full border border-zinc-400/40 dark:border-zinc-800/65 text-xs font-display font-bold uppercase tracking-wider text-text-secondary hover:text-text hover:border-zinc-400 dark:hover:border-zinc-700 transition-all duration-200"
+              className="px-4 py-2 rounded-full border border-zinc-400/40 dark:border-zinc-800/65 text-xs font-display font-bold uppercase tracking-wider text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:text-zinc-100 hover:border-zinc-400 dark:hover:border-zinc-700 transition-all duration-200"
             >
               Restart
             </button>
             <button
               onClick={onClose}
-              className="px-4 py-2 rounded-full border border-zinc-400/40 dark:border-zinc-800/65 text-xs font-display font-bold uppercase tracking-wider text-text-secondary hover:text-text hover:border-zinc-400 dark:hover:border-zinc-700 transition-all duration-200"
+              className="px-4 py-2 rounded-full border border-zinc-400/40 dark:border-zinc-800/65 text-xs font-display font-bold uppercase tracking-wider text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:text-zinc-100 hover:border-zinc-400 dark:hover:border-zinc-700 transition-all duration-200"
             >
               Close
             </button>
@@ -368,14 +368,14 @@ export default function TechMemoryGame({ onClose }: TechMemoryGameProps) {
         </div>
 
         {/* ──────── RIGHT: Leaderboard Panel ──────── */}
-        <div className="w-full lg:w-[280px] shrink-0">
+        <div className="w-full lg:w-[280px] shrink-0 bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm p-4">
           <div className="flex items-center justify-between mb-4">
-            <h4 className="font-display text-sm font-bold uppercase tracking-wider text-text">
+            <h4 className="font-display text-sm font-bold uppercase tracking-wider text-zinc-900 dark:text-zinc-100">
               Rankings
             </h4>
             <button
               onClick={fetchLeaderboard}
-              className="text-text-tertiary hover:text-text transition-colors duration-200"
+              className="text-zinc-500 dark:text-zinc-500 hover:text-zinc-900 dark:text-zinc-100 transition-colors duration-200"
               title="Refresh rankings"
             >
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
@@ -413,11 +413,11 @@ export default function TechMemoryGame({ onClose }: TechMemoryGameProps) {
               <div className="p-6 relative z-10">
                 <div className="text-center mb-4">
                   <div className="text-3xl mb-2">🎉</div>
-                  <h3 className="font-display font-bold text-lg text-text tracking-tight uppercase">
+                  <h3 className="font-display font-bold text-lg text-zinc-900 dark:text-zinc-100 tracking-tight uppercase">
                     Level Cleared!
                   </h3>
-                  <p className="text-xs text-text-secondary mt-1">
-                    Completed in <span className="font-semibold text-text">{moves} moves</span> & <span className="font-semibold text-text">{formatTime(timer)}</span>
+                  <p className="text-xs text-zinc-600 dark:text-zinc-400 mt-1">
+                    Completed in <span className="font-semibold text-zinc-900 dark:text-zinc-100">{moves} moves</span> & <span className="font-semibold text-zinc-900 dark:text-zinc-100">{formatTime(timer)}</span>
                   </p>
                 </div>
 
@@ -441,7 +441,7 @@ export default function TechMemoryGame({ onClose }: TechMemoryGameProps) {
 
                 {/* Submit Form */}
                 <div className="space-y-3">
-                  <label className="font-display text-[10px] font-bold uppercase tracking-wider text-text-secondary block">
+                  <label className="font-display text-[10px] font-bold uppercase tracking-wider text-zinc-600 dark:text-zinc-400 block">
                     Submit Score
                   </label>
                   <input
@@ -451,7 +451,7 @@ export default function TechMemoryGame({ onClose }: TechMemoryGameProps) {
                     onKeyDown={(e) => e.key === "Enter" && handleSubmitScore()}
                     placeholder="Enter name..."
                     maxLength={20}
-                    className="w-full px-4 py-2.5 rounded-xl border border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950/50 font-body text-xs text-text placeholder:text-text-tertiary focus:outline-none focus:ring-1 focus:ring-text/30 focus:border-text transition-all duration-200"
+                    className="w-full px-4 py-2.5 rounded-xl border border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950/50 font-body text-xs text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-500 dark:text-zinc-500 focus:outline-none focus:ring-1 focus:ring-text/30 focus:border-text transition-all duration-200"
                     autoFocus
                   />
 
@@ -474,7 +474,7 @@ export default function TechMemoryGame({ onClose }: TechMemoryGameProps) {
                     </button>
                     <button
                       onClick={() => { setPhase("playing"); resetGame(); }}
-                      className="px-4 py-2 rounded-full border border-zinc-300 dark:border-zinc-800 bg-transparent font-display text-[11px] font-semibold uppercase tracking-wider text-text hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 transition-all duration-200"
+                      className="px-4 py-2 rounded-full border border-zinc-300 dark:border-zinc-800 bg-transparent font-display text-[11px] font-semibold uppercase tracking-wider text-zinc-900 dark:text-zinc-100 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 transition-all duration-200"
                     >
                       Skip
                     </button>
@@ -486,10 +486,10 @@ export default function TechMemoryGame({ onClose }: TechMemoryGameProps) {
               <div className="p-6 relative z-10">
                 <div className="text-center mb-5">
                   <div className="text-3xl mb-1.5">🏆</div>
-                  <h3 className="font-display font-bold text-lg text-text uppercase">
+                  <h3 className="font-display font-bold text-lg text-zinc-900 dark:text-zinc-100 uppercase">
                     Score Saved
                   </h3>
-                  <p className="text-xs text-text-secondary mt-1">
+                  <p className="text-xs text-zinc-600 dark:text-zinc-400 mt-1">
                     Your score has been updated successfully.
                   </p>
                 </div>
@@ -498,7 +498,7 @@ export default function TechMemoryGame({ onClose }: TechMemoryGameProps) {
                 <div className="flex gap-2.5">
                   <button
                     onClick={handleShare}
-                    className="flex-1 px-4 py-2.5 rounded-full border border-zinc-300 dark:border-zinc-800 bg-transparent font-display text-[10px] font-semibold uppercase tracking-wider text-text hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 transition-all duration-200 flex items-center justify-center gap-1.5"
+                    className="flex-1 px-4 py-2.5 rounded-full border border-zinc-300 dark:border-zinc-800 bg-transparent font-display text-[10px] font-semibold uppercase tracking-wider text-zinc-900 dark:text-zinc-100 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 transition-all duration-200 flex items-center justify-center gap-1.5"
                   >
                     {copied ? "✓ Copied!" : "Share Score"}
                   </button>
@@ -511,7 +511,7 @@ export default function TechMemoryGame({ onClose }: TechMemoryGameProps) {
                 </div>
                 <button
                   onClick={onClose}
-                  className="w-full mt-2.5 px-4 py-2 rounded-full border border-zinc-300/50 dark:border-zinc-800/30 font-display text-[10px] font-semibold uppercase tracking-wider text-text-tertiary hover:text-text-secondary transition-all duration-200 text-center"
+                  className="w-full mt-2.5 px-4 py-2 rounded-full border border-zinc-300/50 dark:border-zinc-800/30 font-display text-[10px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-500 hover:text-zinc-600 dark:text-zinc-400 transition-all duration-200 text-center"
                 >
                   Done
                 </button>
@@ -555,8 +555,8 @@ function LeaderboardPanel({
             className={cn(
               "flex-1 py-2 font-display text-[10px] font-bold uppercase tracking-wider transition-all duration-200 border-b-2 -mb-[2px]",
               filter === f
-                ? "text-text border-text"
-                : "text-text-tertiary border-transparent hover:text-text-secondary"
+                ? "text-zinc-900 dark:text-zinc-100 border-text"
+                : "text-zinc-500 dark:text-zinc-500 border-transparent hover:text-zinc-600 dark:text-zinc-400"
             )}
           >
             {f}
@@ -568,24 +568,24 @@ function LeaderboardPanel({
       <div className="overflow-y-auto max-h-[360px]">
         {loading ? (
           <div className="flex items-center justify-center py-10">
-            <svg className="animate-spin h-5 w-5 text-text-tertiary" viewBox="0 0 24 24">
+            <svg className="animate-spin h-5 w-5 text-zinc-500 dark:text-zinc-500" viewBox="0 0 24 24">
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
             </svg>
           </div>
         ) : entries.length === 0 ? (
           <div className="text-center py-10 px-4">
-            <p className="font-display text-xs font-semibold text-text-secondary">No records</p>
+            <p className="font-display text-xs font-semibold text-zinc-600 dark:text-zinc-400">No records</p>
           </div>
         ) : (
           <table className="w-full">
             <thead>
               <tr className="border-b border-zinc-300 dark:border-zinc-800/60">
-                <th className="py-2 px-2 text-left font-display text-[9px] font-semibold uppercase tracking-wider text-text-tertiary w-7">#</th>
-                <th className="py-2 px-2 text-left font-display text-[9px] font-semibold uppercase tracking-wider text-text-tertiary">Player</th>
-                <th className="py-2 px-2 text-center font-display text-[9px] font-semibold uppercase tracking-wider text-text-tertiary">Moves</th>
-                <th className="py-2 px-2 text-center font-display text-[9px] font-semibold uppercase tracking-wider text-text-tertiary">Time</th>
-                <th className="py-2 px-2 text-right font-display text-[9px] font-semibold uppercase tracking-wider text-text-tertiary">Lvl</th>
+                <th className="py-2 px-2 text-left font-display text-[9px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-500 w-7">#</th>
+                <th className="py-2 px-2 text-left font-display text-[9px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-500">Player</th>
+                <th className="py-2 px-2 text-center font-display text-[9px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-500">Moves</th>
+                <th className="py-2 px-2 text-center font-display text-[9px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-500">Time</th>
+                <th className="py-2 px-2 text-right font-display text-[9px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-500">Lvl</th>
               </tr>
             </thead>
             <tbody>
@@ -603,19 +603,19 @@ function LeaderboardPanel({
                   >
                     <td className="py-2 px-2 font-body text-xs">
                       {i < 3 ? medals[i] : (
-                        <span className="text-text-tertiary text-[10px] tabular-nums">{(i + 1).toString().padStart(2, '0')}</span>
+                        <span className="text-zinc-500 dark:text-zinc-500 text-[10px] tabular-nums">{(i + 1).toString().padStart(2, '0')}</span>
                       )}
                     </td>
-                    <td className="py-2 px-2 font-display text-[11px] font-semibold tracking-tight truncate max-w-[90px] text-text">
+                    <td className="py-2 px-2 font-display text-[11px] font-semibold tracking-tight truncate max-w-[90px] text-zinc-900 dark:text-zinc-100">
                       <span className="flex items-center gap-1">
                         {entry.name}
-                        {isHighlighted && <span className="text-[8px] text-text-tertiary opacity-70">(you)</span>}
+                        {isHighlighted && <span className="text-[8px] text-zinc-500 dark:text-zinc-500 opacity-70">(you)</span>}
                       </span>
                     </td>
-                    <td className="py-2 px-2 text-center font-body text-[11px] text-text-secondary tabular-nums">
+                    <td className="py-2 px-2 text-center font-body text-[11px] text-zinc-600 dark:text-zinc-400 tabular-nums">
                       {entry.moves}
                     </td>
-                    <td className="py-2 px-2 text-center font-body text-[11px] text-text-secondary tabular-nums">
+                    <td className="py-2 px-2 text-center font-body text-[11px] text-zinc-600 dark:text-zinc-400 tabular-nums">
                       {formatTime(entry.time)}
                     </td>
                     <td className="py-2 px-2 text-right">
